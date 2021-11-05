@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class SEM {
 		
-		private int hora;
 		private ArrayList<Usuario> listaDeUsuarios;
 		private ArrayList<Infraccion> infracciones;
 		private ArrayList<EstacionamientoVigente> estacionamientosActuales;
