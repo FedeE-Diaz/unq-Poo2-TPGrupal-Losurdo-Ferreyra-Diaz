@@ -65,7 +65,7 @@ public class SEM {
 			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
 		}
 		public void cargarInfraccion(String patente) {
-			this.getMyInfraccion().cargarCredito(patente);
+			this.getMyInfraccion().cargarInfraccion(patente);
 		}
 		
 }
