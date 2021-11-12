@@ -14,7 +14,7 @@ public class SEMGestionInfraccion {
 		super();
 		this.infracciones = new ArrayList<Infraccion>();
 	}
-
+	//se corrigio el nombre
 	public void cargarInfraccion(String patente) {
 		// TODO Auto-generated method stub
 		
