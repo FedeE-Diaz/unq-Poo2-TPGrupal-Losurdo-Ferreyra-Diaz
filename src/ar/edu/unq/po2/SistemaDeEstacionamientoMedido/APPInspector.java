@@ -4,7 +4,7 @@ public class APPInspector {
 	
 	private SEM sem;
 	
-	public APPInspector(SEM sem, Celular celular) {
+	public APPInspector(SEM sem, Celular celular) { //necesito un celular?
 		this.sem     = sem;
 	}
 	
@@ -19,7 +19,7 @@ public class APPInspector {
 		
 	}
 
-	private boolean esEstacionamientoVigente(String patente) {
+	public boolean esEstacionamientoVigente(String patente) {
 		return sem.esEstacionamientoVigente(patente);
 	}
 }
