@@ -63,9 +63,9 @@ public class SEM {
 		}
 		public void cargarCredito(int numTelefono, int credito) {
 			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
-		}
+		} //se corrigio el nombre
 		public void cargarInfraccion(String patente) {
-			this.getMyInfraccion().cargarCredito(patente);
+			this.getMyInfraccion().cargarInfraccion(patente);
 		}
 		
 }
