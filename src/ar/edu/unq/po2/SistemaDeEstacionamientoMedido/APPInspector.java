@@ -22,5 +22,4 @@ public class APPInspector {
 	private boolean esEstacionamientoVigente(String patente) {
 		return sem.esEstacionamientoVigente(patente);
 	}
-
 }

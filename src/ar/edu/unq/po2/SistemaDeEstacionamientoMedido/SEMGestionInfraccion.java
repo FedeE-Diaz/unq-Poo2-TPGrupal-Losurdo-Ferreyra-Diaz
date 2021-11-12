@@ -6,7 +6,7 @@ public class SEMGestionInfraccion {
 	
 	private ArrayList<Infraccion> infracciones;
 
-	private ArrayList<Infraccion> getInfracciones() {
+	public ArrayList<Infraccion> getInfracciones() {
 		return infracciones;
 	}
 

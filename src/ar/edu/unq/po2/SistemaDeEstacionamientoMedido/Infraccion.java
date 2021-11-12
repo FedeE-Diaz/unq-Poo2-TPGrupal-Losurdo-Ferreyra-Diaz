@@ -1,19 +1,18 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
-import java.security.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Infraccion {
 	
-	private Date fecha;
-	private Timestamp hora;
+	private String patente;
+	private LocalDateTime fechaYHora;
 	
-	public Infraccion(Date fecha, Timestamp hora) {
+	public Infraccion(String patente) {
 		super();
-		this.fecha = fecha;
-		this.hora = hora;
+		this.patente = patente;
+		this.fechaYHora = LocalDateTime.now();
 	}
-	
-	
-
+	public String getPatente() {
+		return patente;
+	}
 }
