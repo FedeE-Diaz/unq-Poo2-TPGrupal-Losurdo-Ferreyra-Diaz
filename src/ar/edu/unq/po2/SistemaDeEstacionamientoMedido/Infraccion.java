@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 public class Infraccion {
 	
 	private String patente;
+	private Inspector inspector;
+	private Zona zona;
 	private LocalDateTime fechaYHora;
 	
-	public Infraccion(String patente) {
+	public Infraccion(String patente, Inspector inspector, Zona zona) {
 		super();
-		this.patente = patente;
+		this.patente    = patente;
+		this.inspector  = inspector;
+		this.zona       = zona;
 		this.fechaYHora = LocalDateTime.now();
 	}
 	public String getPatente() {
