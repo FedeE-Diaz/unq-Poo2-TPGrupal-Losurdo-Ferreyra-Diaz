@@ -67,5 +67,9 @@ public class SEM {
 		public void cargarInfraccion(String patente) {
 			this.getMyInfraccion().cargarInfraccion(patente);
 		}
+		public Usuario getUsuario(int numero) {
+			// TODO Auto-generated method stub
+			return this.getMyGestionUsuario().getUsuarioDe(numero);
+		}
 		
 }

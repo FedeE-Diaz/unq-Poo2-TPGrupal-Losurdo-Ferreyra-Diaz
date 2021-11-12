@@ -31,7 +31,7 @@ public class SEMGestionEstacionamiento {
 	}
 
 	public EstacionamientoVigente getEstacionamientoDe(String patente) {
-		// El mensaje solo puede ser invocado después de verificar la existencia del estacionamientoVigente (en este caso mediante esEstacionamientoVigente)
+		// El mensaje solo debe ser invocado después de verificar la existencia del estacionamientoVigente (en este caso mediante esEstacionamientoVigente)
 	    for (EstacionamientoVigente estacionamiento : this.getEstacionamientosActuales()) {
 	        if (estacionamiento.esMismaPatente(patente)) {
 	            return estacionamiento;
