@@ -15,6 +15,7 @@ class APPInspectorTest {
 	public void setUp() throws Exception {
 		this.sem          = new SEM();
 		this.celular      = new Celular(123123);
+		this.inspector    = new Inspector("Leo", )
 		this.appInspector = new APPInspector(sem, celular);;
 	}
 	
