@@ -1,22 +1,27 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
+import java.util.ArrayList;
 
-public class SEM {
+public class SEM implements Temporizador{
 		
 		private SEMGestionUsuario gestionUsuario;
 		private SEMGestionInfraccion gestionInfraccion;
 		private SEMGestionEstacionamiento gestionEstacionamiento;
 		private SEMGestionZona gestionZona;
 		private SEMGestionRegistro gestionRegistro;
-		private final int precioEstacionamiento = 40;
-	
+		private SEMGestionMonitoreo gestionMonitoreo;
+		private Reloj reloj;
+		
 		public SEM() {
 			super();
 			this.gestionUsuario = new SEMGestionUsuario();
 			this.gestionInfraccion = new SEMGestionInfraccion();
-			this.gestionEstacionamiento = new SEMGestionEstacionamiento();
+			this.gestionEstacionamiento = new SEMGestionEstacionamiento(this);
 			this.gestionZona = new SEMGestionZona();
 			this.gestionRegistro = new SEMGestionRegistro();
+			this.gestionMonitoreo = new SEMGestionMonitoreo();
+			this.reloj = new Reloj();
+			reloj.agregarObservador(this);
 		}
 		public SEMGestionUsuario getMyGestionUsuario() {
 			return gestionUsuario;
@@ -37,17 +42,19 @@ public class SEM {
 		public SEMGestionRegistro getMyRegistro() {
 			return gestionRegistro;
 		}
-
-		private int getPrecioEstacionamientoPorHora() {
-			return precioEstacionamiento;
+		
+		public SEMGestionMonitoreo getMyGestionMonitoreo() {
+			return gestionMonitoreo;
 		}
 		
+		public Reloj getReloj() {
+			return reloj;
+		}
+		public int getPrecioEstacionamientoPorHora() {
+			return this.getMyEstacionamiento().getPrecioEstacionamientoPorHora();
+		}
 		public boolean esEstacionamientoVigente(String patente) {
 			return this.getMyEstacionamiento().esEstacionamientoVigente(patente);	
-		}
-		
-		public void finalizarTodosLosEstacionamientos() {
-			this.getMyEstacionamiento().finalizarTodosLosEstacionamientos();
 		}
 		public void finEstacionamiento(String patente) {
 			this.getMyEstacionamiento().finEstacionamiento(patente);
@@ -63,9 +70,24 @@ public class SEM {
 		}
 		public void cargarCredito(int numTelefono, int credito) {
 			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
-		} //se corrigio el nombre
-		public void cargarInfraccion(String patente) {
-			this.getMyInfraccion().cargarInfraccion(patente);
+		} 
+		public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
+			this.getMyInfraccion().cargarInfraccion(patente, inspector, zona);
 		}
-		
+		public Zona obtenerZonaDe(GPS gps) {
+			return this.getMyZona().obtenerZonaDe(gps);
+		}
+		public Usuario getUsuario(int numero) {
+			return this.getMyGestionUsuario().getUsuarioDe(numero);
+		}
+		@Override
+		public void actualizarReloj() {
+			this.getMyEstacionamiento().actualizarEstadoEstacionamiento();
+		}
+		public ArrayList<String> iniciarNuevoEstacionamiento(App app) {
+			return this.getMyEstacionamiento().iniciarNuevoEstacionamiento(app);
+		}
+		public void crearUsuarioDesdeApp(App app,int numTel) {
+			this.getMyGestionUsuario().crearUsuarioDesdeApp(app,numTel);
+		}
 }
