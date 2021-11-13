@@ -34,6 +34,14 @@ public class SEMGestionUsuario {
 	    return null;
 	}
 
+	public void crearUsuarioDesdeApp(App app, int numTel) {
+		if(this.esUsuarioExistente(numTel)) {
+			this.getUsuarioDe(numTel).setApp(app);
+		}
+		else {
+			this.crearUsuario(numTel, numTel, app);
+		}
+	}
 	private boolean esUsuarioExistente(int numTel){
 		return this.getListaDeUsuarios().stream().anyMatch(p -> p.esMismoNumero(numTel));
 	}

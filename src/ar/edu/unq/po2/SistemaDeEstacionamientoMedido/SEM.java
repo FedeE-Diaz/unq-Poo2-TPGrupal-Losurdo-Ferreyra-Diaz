@@ -8,7 +8,7 @@ public class SEM {
 		private SEMGestionEstacionamiento gestionEstacionamiento;
 		private SEMGestionZona gestionZona;
 		private SEMGestionRegistro gestionRegistro;
-		private final int precioEstacionamiento = 40;
+		private SEMGestionMonitoreo gestionMonitoreo;
 	
 		public SEM() {
 			super();
@@ -17,6 +17,7 @@ public class SEM {
 			this.gestionEstacionamiento = new SEMGestionEstacionamiento();
 			this.gestionZona = new SEMGestionZona();
 			this.gestionRegistro = new SEMGestionRegistro();
+			this.gestionMonitoreo = new SEMGestionMonitoreo();
 		}
 		public SEMGestionUsuario getMyGestionUsuario() {
 			return gestionUsuario;
@@ -37,15 +38,17 @@ public class SEM {
 		public SEMGestionRegistro getMyRegistro() {
 			return gestionRegistro;
 		}
-
-		private int getPrecioEstacionamientoPorHora() {
-			return precioEstacionamiento;
+		
+		public SEMGestionMonitoreo getMyGestionMonitoreo() {
+			return gestionMonitoreo;
 		}
 		
+		public int getPrecioEstacionamientoPorHora() {
+			return this.getMyEstacionamiento().getPrecioEstacionamientoPorHora();
+		}
 		public boolean esEstacionamientoVigente(String patente) {
 			return this.getMyEstacionamiento().esEstacionamientoVigente(patente);	
 		}
-		
 		public void finalizarTodosLosEstacionamientos() {
 			this.getMyEstacionamiento().finalizarTodosLosEstacionamientos();
 		}
@@ -67,9 +70,14 @@ public class SEM {
 		public void cargarInfraccion(String patente) {
 			this.getMyInfraccion().cargarInfraccion(patente);
 		}
+		public Zona obtenerZonaDe(GPS gps) {
+			return this.getMyZona().obtenerZonaDe(gps);
+		}
 		public Usuario getUsuario(int numero) {
-			// TODO Auto-generated method stub
 			return this.getMyGestionUsuario().getUsuarioDe(numero);
+		}
+		public void actualizarEstadoEstacionamiento() {
+			this.getMyEstacionamiento().actualizarEstadoEstacionamiento();
 		}
 		
 }

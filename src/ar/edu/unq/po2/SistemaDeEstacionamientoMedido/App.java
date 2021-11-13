@@ -6,27 +6,40 @@ public class App implements MovementSensor{
 	private Modo modo; //Me parecio una buena idea hacer un State/Strategy (Verificar cual,muy probablemente un strategy) para el modo automatico/manual.
 	private Celular celular;
 	private SEM sem;
-	private Usuario usuario;
+	private Automatico auto;
+	private Manual manual;
 	
-	
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getUsuario() { 
+		return sem.getUsuario(celular.getNumero());
 	}
 
 	public String getPatente() {
 		return patente;
 	}
 	
+	public Automatico getAuto() {
+		return auto;
+	}
+
+	public Manual getManual() {
+		return manual;
+	}
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
+	
+	public void setModo(Modo modo) {
+		this.modo = modo;
+	}
 
-	public App(Modo modo, Celular celular) {
+	public App(String patente, Celular celular) {
 		super();
-		this.patente = null; //?
-		this.modo = modo; //?
+		this.patente = patente;
+		this.modo = manual; // ver en los test si esto funciona bien
 		this.celular = celular;
-		this.usuario = null; //???
+		this.auto = new Automatico(this);
+		this.manual = new Manual(this);
+	//	this.usuario = null; //???
 		// construir un nuevo usuario en el sem si no hay ya un usuario creado(y si lo hay simplemente agregarse al usuario ya existente la app)
 	}
 	
@@ -34,10 +47,12 @@ public class App implements MovementSensor{
 		modo.cambiarModo();
 	}
 	
+
+
 	public String consultarSaldoDisponible() {
 		return "Su saldo disponible es: " + this.saldoDisponible();	
 	}
-	private int saldoDisponible() {
+	public int saldoDisponible() {
 		return this.getUsuario().getCredito();
 	}
 	
@@ -57,6 +72,16 @@ public class App implements MovementSensor{
 	public void walking() {
 		//TODO: completar - REVISAR ASISTENCIA AL USUARIO
 		modo.asistenciaInicioEstacionamiento();
+	}
+
+	public int getNumeroTelefono() {
+		
+		return celular.getNumero();
+	}
+
+	public Zona getZonaActual() {
+
+		return sem.obtenerZonaDe(celular.getGPS());
 	}
 }
 /* Asistencia al usuario: En el primer caso los usuarios reciben multas por una omisión involuntaria, mientras que

@@ -7,23 +7,14 @@ public class Manual implements Modo{
 	
 	private final App app;
 	
+	private App getApp() {
+		return app;
+	}
+
 	public Manual(App app) {
 		super();
 		this.app = app;
 	}
-
-
-
-	@Override
-	public ArrayList<String> iniciarEstacionamiento() {
-		// TODO Auto-generated method stub
-		// nuevoestacionamiento(patente)
-		return null;
-		
-		
-	}
-
-
 
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
@@ -44,6 +35,15 @@ public class Manual implements Modo{
 	@Override
 	public void asistenciaFinEstacionamiento() {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void cambiarModo() {
+
+		this.getApp().setModo(app.getAuto());
 		
 	}
 

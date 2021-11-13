@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class SEMGestionEstacionamiento {
 	
-	
+	private SEMGestionApp gestionApp; 
+	private final int precioEstacionamiento = 40;
 	private ArrayList<EstacionamientoVigente> estacionamientosActuales;
 
 	private ArrayList<EstacionamientoVigente> getEstacionamientosActuales() {
@@ -14,8 +15,11 @@ public class SEMGestionEstacionamiento {
 	public SEMGestionEstacionamiento() {
 		super();
 		this.estacionamientosActuales = new ArrayList<EstacionamientoVigente>();
+		this.gestionApp = new SEMGestionApp(this);
 	}
-
+	public int getPrecioEstacionamientoPorHora() {
+		return precioEstacionamiento;
+	}
 	public boolean esEstacionamientoVigente(String patente) {
 		return this.getEstacionamientosActuales().stream().anyMatch(p -> p.esMismaPatente(patente));
 	}
@@ -52,11 +56,22 @@ public class SEMGestionEstacionamiento {
 
 	public void finEstacionamiento(String patente) {
 		//Tirar error(mediante algun mensaje o algo) o salvarlo con if, si la patente dada no existe dentro de la lista de estacionamientoVigente.
-		if(this.esEstacionamientoVigente(patente)) {
+		if(this.esEstacionamientoVigente(patente)){
 			
 			this.removerEstacionamientoVigente(this.getEstacionamientoDe(patente));
 		}
 		
 	}
-	
+	public void iniciarNuevoEstacionamiento(App app) {
+		gestionApp.iniciarNuevoEstacionamiento(app);
+	}
+
+	public void actualizarEstadoEstacionamiento() {
+		// TODO 
+		/* Esto lo que hará es darle la orden a todos los estacionamientos(pero solo tendra efecto en el de la app)
+		 *  de revisar en cada uno de los estacionamientos vigentes, que si ya se completo una nueva hora desde que se inicio,
+		 *   se vuelva a cobrar otros 40 por el estacionamiento.
+		 */
+		// por cada estacionamiento -> estacionamiento.actualizarEstado() o algo asi (verá si es momento de cobrar dinero o no)
+	}
 }
