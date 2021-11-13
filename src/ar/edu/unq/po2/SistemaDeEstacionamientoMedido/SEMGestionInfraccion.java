@@ -5,18 +5,18 @@ import java.util.ArrayList;
 public class SEMGestionInfraccion {
 	
 	private ArrayList<Infraccion> infracciones;
-
-	public ArrayList<Infraccion> getInfracciones() {
-		return infracciones;
-	}
 	
 	public SEMGestionInfraccion() {
 		super();
 		this.infracciones = new ArrayList<Infraccion>();
 	}
 	
-	public void cargarInfraccion(String patente) {
-		Infraccion nuevaInfraccion = new Infraccion(patente);
+	public ArrayList<Infraccion> getInfracciones() {
+		return infracciones;
+	}
+	
+	public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
+		Infraccion nuevaInfraccion = new Infraccion(patente, inspector, zona);
 		this.infracciones.add(nuevaInfraccion);		
 	}
 	

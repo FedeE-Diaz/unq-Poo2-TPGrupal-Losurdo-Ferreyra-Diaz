@@ -16,6 +16,7 @@ public class Infraccion {
 		this.zona       = zona;
 		this.fechaYHora = LocalDateTime.now();
 	}
+	
 	public String getPatente() {
 		return patente;
 	}
