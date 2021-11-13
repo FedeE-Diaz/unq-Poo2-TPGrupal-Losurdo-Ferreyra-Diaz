@@ -24,6 +24,10 @@ public class App implements MovementSensor{
 	public Manual getManual() {
 		return manual;
 	}
+	public SEM getSem() {
+		return sem;
+	}
+
 	public void setPatente(String patente) {
 		this.patente = patente;
 	}
@@ -83,6 +87,7 @@ public class App implements MovementSensor{
 
 		return sem.obtenerZonaDe(celular.getGPS());
 	}
+
 }
 /* Asistencia al usuario: En el primer caso los usuarios reciben multas por una omisión involuntaria, mientras que
 en el segundo caso pierden dinero por extender el registro de estacionamiento hasta el final del

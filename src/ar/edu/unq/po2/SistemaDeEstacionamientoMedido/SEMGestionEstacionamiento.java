@@ -2,9 +2,11 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.util.ArrayList;
 
-public class SEMGestionEstacionamiento {
+public class SEMGestionEstacionamiento{
 	
-	private SEMGestionApp gestionApp; 
+	private SEMGestionApp gestionApp;
+	private SEM sem;
+
 	private final int precioEstacionamiento = 40;
 	private ArrayList<EstacionamientoVigente> estacionamientosActuales;
 
@@ -12,26 +14,20 @@ public class SEMGestionEstacionamiento {
 		return estacionamientosActuales;
 	}
 
-	public SEMGestionEstacionamiento() {
+	public SEMGestionEstacionamiento(SEM sem) {
 		super();
 		this.estacionamientosActuales = new ArrayList<EstacionamientoVigente>();
-		this.gestionApp = new SEMGestionApp(this);
+		this.gestionApp = new SEMGestionApp(sem,this);
+		this.sem = sem;
+
 	}
+	
+
 	public int getPrecioEstacionamientoPorHora() {
 		return precioEstacionamiento;
 	}
 	public boolean esEstacionamientoVigente(String patente) {
 		return this.getEstacionamientosActuales().stream().anyMatch(p -> p.esMismaPatente(patente));
-	}
-
-	public void finalizarTodosLosEstacionamientos() {
-		//TODO: falta evaluar de alguna forma(en algun lado) la hora en la que se debe enviar este mensaje y quiza agregar un comprobador de hora?
-		for(EstacionamientoVigente estacionamiento: this.getEstacionamientosActuales()) {
-			this.removerEstacionamientoVigente(estacionamiento);
-			estacionamiento.enviarNotificacion();
-			//TODO: agregar un mensaje hook o algo que se encargue de enviar el mensaje a la app de los estacionamientosApp de que termino 
-		}
-		
 	}
 
 	public EstacionamientoVigente getEstacionamientoDe(String patente) {
@@ -55,23 +51,55 @@ public class SEMGestionEstacionamiento {
 	}
 
 	public void finEstacionamiento(String patente) {
-		//Tirar error(mediante algun mensaje o algo) o salvarlo con if, si la patente dada no existe dentro de la lista de estacionamientoVigente.
+		//TODO Tirar error(mediante algun mensaje o algo) o salvarlo con if, si la patente dada no existe dentro de la lista de estacionamientoVigente.
 		if(this.esEstacionamientoVigente(patente)){
 			
 			this.removerEstacionamientoVigente(this.getEstacionamientoDe(patente));
 		}
 		
 	}
-	public void iniciarNuevoEstacionamiento(App app) {
-		gestionApp.iniciarNuevoEstacionamiento(app);
+	public ArrayList<String> iniciarNuevoEstacionamiento(App app) {
+		return gestionApp.iniciarNuevoEstacionamiento(app);
 	}
 
 	public void actualizarEstadoEstacionamiento() {
-		// TODO 
+		// TODO completar la parte de abajo comentada
+		
+		this.verificarFinalizacionDeTodosLosEstacionamientos();
 		/* Esto lo que hará es darle la orden a todos los estacionamientos(pero solo tendra efecto en el de la app)
 		 *  de revisar en cada uno de los estacionamientos vigentes, que si ya se completo una nueva hora desde que se inicio,
 		 *   se vuelva a cobrar otros 40 por el estacionamiento.
 		 */
 		// por cada estacionamiento -> estacionamiento.actualizarEstado() o algo asi (verá si es momento de cobrar dinero o no)
+	
+		
 	}
+
+	private void verificarFinalizacionDeTodosLosEstacionamientos() {
+		if(this.esHoraDeFinalizar()) {
+			this.finalizarTodosLosEstacionamientos();
+		}
+		
+	}
+
+	private boolean esHoraDeFinalizar() {
+		
+		return sem.getReloj().getHoraActual() >=20;
+	}
+
+	public void finalizarTodosLosEstacionamientos() {
+		
+		for(EstacionamientoVigente estacionamiento: this.getEstacionamientosActuales()) {
+			this.removerEstacionamientoVigente(estacionamiento);
+			estacionamiento.enviarNotificacion(this);
+			//TODO: agregar un mensaje hook o algo que se encargue de enviar el mensaje a la app de los estacionamientosApp de que termino 
+		}
+		
+	}
+	public void notificarUsuario(int numTelefono) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

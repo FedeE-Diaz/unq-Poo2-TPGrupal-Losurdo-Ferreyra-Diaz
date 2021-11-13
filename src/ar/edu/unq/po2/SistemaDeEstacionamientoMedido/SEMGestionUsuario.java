@@ -17,13 +17,15 @@ public class SEMGestionUsuario {
 
 	public void cargarCredito(int numTelefono, int credito) {
 		if(!this.esUsuarioExistente(numTelefono)) {
-			this.crearUsuario(numTelefono,credito,null);
+			this.crearUsuario(numTelefono,credito,null); //quiza en vez de pasarle un null,pasarle una app random?
 		}
 		else {
-			this.getUsuarioDe(numTelefono).sumarCredito(credito);
+			this.sumarCreditoA(numTelefono,credito);
 		}
 	}
-	
+	public void sumarCreditoA(int numTelefono, int credito) {
+		this.getUsuarioDe(numTelefono).sumarCredito(credito);
+	}
 	public Usuario getUsuarioDe(int numTelefono) {
 		// El mensaje solo debe ser invocado después de verificar la existencia del usuario (en este caso mediante esUsuarioExistente)
 	    for (Usuario usuario : this.getListaDeUsuarios()) {

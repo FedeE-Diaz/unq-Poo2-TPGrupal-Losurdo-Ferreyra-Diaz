@@ -17,8 +17,7 @@ public class Automatico implements Modo {
 
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		// TODO Auto-generated method stub
-		SEM.iniciarNuevoEstacionamiento(app);
+		return app.getSem().iniciarNuevoEstacionamiento(app);
 	}
 
 	// AVISA Y CREA/ELIMINA
@@ -33,11 +32,14 @@ public class Automatico implements Modo {
 	// TODO Auto-generated method stub
 	
 	}
-
+/*En estos casos, el
+usuario también recibe una notificación, ahora indicando que el inicio/fin de estacionamiento se ha
+realizado de forma automática.*/
+	
 	@Override
 	public void cambiarModo() {
 	
-	this.getApp().setModo(app.getAuto());
+	this.getApp().setModo(app.getManual());
 	
 	}
 

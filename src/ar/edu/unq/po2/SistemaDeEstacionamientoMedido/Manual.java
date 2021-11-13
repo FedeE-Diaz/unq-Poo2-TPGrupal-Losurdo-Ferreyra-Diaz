@@ -18,8 +18,8 @@ public class Manual implements Modo{
 
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		// TODO Auto-generated method stub
-		return null;
+		app.setPatente(patente);
+		return app.getSem().iniciarNuevoEstacionamiento(app);
 	}
 
 
