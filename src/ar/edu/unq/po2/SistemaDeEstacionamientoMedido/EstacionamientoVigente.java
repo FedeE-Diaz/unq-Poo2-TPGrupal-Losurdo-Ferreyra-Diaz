@@ -1,17 +1,32 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 public class EstacionamientoVigente {
-
+	
+	private String patente;
+	private int horaInicio;
+	private int horaFinal;
+	private Zona zona;
+	
+	public EstacionamientoVigente(String patente, int horaInicio, int horaFinal, Zona zona){
+		this.patente = patente;
+		this.horaInicio = horaInicio;
+		this.horaFinal = horaFinal;
+		this.zona = zona;
+	}
+	
 	public String getPatente() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.patente;
 	}
+	
 	public boolean esMismaPatente(String patente) {
-		// TODO Auto-generated method stub
-		return this.getPatente().equals(patente); //te la dejo de regalo
+		return this.getPatente().equals(patente); 
 	}
-	public void enviarNotificacion() {
-		// TODO Auto-generated method stub
+	
+	public boolean estaEnZona(Zona zona) {
+		return this.zona == zona;
+	}
+	
+	public void enviarNotificacion(SEMGestionEstacionamiento semGestor){
 		
 	}
 }

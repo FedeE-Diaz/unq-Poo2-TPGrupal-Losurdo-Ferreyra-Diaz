@@ -1,5 +1,9 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
-public class Zona {
+import java.util.ArrayList;
 
+public class Zona {
+	private Inspector inspector;
+	private ArrayList<PuntoDeVenta> puntosDeVenta;
+	
 }
