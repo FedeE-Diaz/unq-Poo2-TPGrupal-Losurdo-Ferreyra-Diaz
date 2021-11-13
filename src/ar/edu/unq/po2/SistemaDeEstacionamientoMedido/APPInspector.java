@@ -3,12 +3,10 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 public class APPInspector {
 	
 	private SEM sem;
-	private Inspector inspector;
 	private Celular celular;
 	
 	public APPInspector(Inspector inspector, SEM sem, Celular celular) { 
 		this.sem       = sem;
-		this.inspector = inspector;
 		this.celular   = celular; 
 	}
 	
