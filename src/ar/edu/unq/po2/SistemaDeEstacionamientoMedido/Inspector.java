@@ -2,15 +2,17 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 public class Inspector {
 	
+	Zona zona;
 	APPInspector app;
 	
-	public Inspector(APPInspector app) {
+	public Inspector(Zona zona) {
 		super();
-		this.app = app;
+		this.zona = Zona;
+		this.app  = new APPInspector(this);
 	}
 	
-	public void verificarTodosLosVehiculosDe(Zona zona) {
-		for(EstacionamientoVigente estacionamiento : zona.getEstacionamientosActuales()) {
+	public void verificarTodosLosVehiculos() {
+		for(EstacionamientoVigente estacionamiento : this.zona) {
 			this.app.verificarPatente(estacionamiento.getPatente());
 		}
 	}

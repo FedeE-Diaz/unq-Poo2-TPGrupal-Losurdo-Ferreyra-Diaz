@@ -4,7 +4,7 @@ public class APPInspector {
 	
 	private SEM sem;
 	
-	public APPInspector(SEM sem, Celular celular) { //necesito un celular?
+	public APPInspector(SEM sem, Celular celular) { 
 		this.sem     = sem;
 	}
 	
