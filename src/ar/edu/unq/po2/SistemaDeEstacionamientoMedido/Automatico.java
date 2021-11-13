@@ -17,7 +17,7 @@ public class Automatico implements Modo {
 
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		return app.getSem().iniciarNuevoEstacionamiento(app);
+		return this.getApp().getSem().iniciarNuevoEstacionamiento(this.getApp());
 	}
 
 	// AVISA Y CREA/ELIMINA
@@ -39,7 +39,7 @@ realizado de forma automática.*/
 	@Override
 	public void cambiarModo() {
 	
-	this.getApp().setModo(app.getManual());
+	this.getApp().setModo(new Manual(app));
 	
 	}
 

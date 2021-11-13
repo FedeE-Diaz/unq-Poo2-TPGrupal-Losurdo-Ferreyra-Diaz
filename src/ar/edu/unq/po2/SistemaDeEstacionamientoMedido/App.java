@@ -2,28 +2,19 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 public class App implements MovementSensor{
 
-	private String patente; //debe guardar la patente para el modo automatico...no?
-	private Modo modo; //Me parecio una buena idea hacer un State/Strategy (Verificar cual,muy probablemente un strategy) para el modo automatico/manual.
+	private String patente; 
+	private Modo modo; //Me parecio una buena idea aplicar un State para el modo automatico/manual.
 	private Celular celular;
 	private SEM sem;
-	private Automatico auto;
-	private Manual manual;
 	
 	public Usuario getUsuario() { 
-		return sem.getUsuario(celular.getNumero());
+		return sem.getUsuario(this.getNumeroTelefono());
 	}
 
 	public String getPatente() {
 		return patente;
 	}
 	
-	public Automatico getAuto() {
-		return auto;
-	}
-
-	public Manual getManual() {
-		return manual;
-	}
 	public SEM getSem() {
 		return sem;
 	}
@@ -35,16 +26,16 @@ public class App implements MovementSensor{
 	public void setModo(Modo modo) {
 		this.modo = modo;
 	}
+	public int getNumeroTelefono() {
+		return celular.getNumero();
+	}
 
 	public App(String patente, Celular celular) {
 		super();
 		this.patente = patente;
-		this.modo = manual; // ver en los test si esto funciona bien
+		this.modo = new Manual(this); // ver en los test si esto funciona bien
 		this.celular = celular;
-		this.auto = new Automatico(this);
-		this.manual = new Manual(this);
-	//	this.usuario = null; //???
-		// construir un nuevo usuario en el sem si no hay ya un usuario creado(y si lo hay simplemente agregarse al usuario ya existente la app)
+		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
 	}
 	
 	public void cambiarModo() {
@@ -76,11 +67,6 @@ public class App implements MovementSensor{
 	public void walking() {
 		//TODO: completar - REVISAR ASISTENCIA AL USUARIO
 		modo.asistenciaInicioEstacionamiento();
-	}
-
-	public int getNumeroTelefono() {
-		
-		return celular.getNumero();
 	}
 
 	public Zona getZonaActual() {

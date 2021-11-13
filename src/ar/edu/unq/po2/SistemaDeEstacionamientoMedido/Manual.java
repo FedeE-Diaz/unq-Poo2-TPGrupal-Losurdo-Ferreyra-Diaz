@@ -18,8 +18,8 @@ public class Manual implements Modo{
 
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		app.setPatente(patente);
-		return app.getSem().iniciarNuevoEstacionamiento(app);
+		this.getApp().setPatente(patente);
+		return this.getApp().getSem().iniciarNuevoEstacionamiento(app);
 	}
 
 
@@ -43,7 +43,7 @@ public class Manual implements Modo{
 	@Override
 	public void cambiarModo() {
 
-		this.getApp().setModo(app.getAuto());
+		this.getApp().setModo(new Automatico(app));
 		
 	}
 

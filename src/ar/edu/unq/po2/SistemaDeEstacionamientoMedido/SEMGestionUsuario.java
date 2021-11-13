@@ -17,7 +17,9 @@ public class SEMGestionUsuario {
 
 	public void cargarCredito(int numTelefono, int credito) {
 		if(!this.esUsuarioExistente(numTelefono)) {
-			this.crearUsuario(numTelefono,credito,null); //quiza en vez de pasarle un null,pasarle una app random?
+			Usuario usuario = this.crearUsuario(numTelefono,credito,null); 
+			//quiza en vez de pasarle un null,pasarle una app random?
+			this.agregarUsuario(usuario);
 		}
 		else {
 			this.sumarCreditoA(numTelefono,credito);
@@ -41,7 +43,8 @@ public class SEMGestionUsuario {
 			this.getUsuarioDe(numTel).setApp(app);
 		}
 		else {
-			this.crearUsuario(numTel, numTel, app);
+			Usuario usuario = this.crearUsuario(numTel, numTel, app);
+			this.agregarUsuario(usuario);
 		}
 	}
 	private boolean esUsuarioExistente(int numTel){

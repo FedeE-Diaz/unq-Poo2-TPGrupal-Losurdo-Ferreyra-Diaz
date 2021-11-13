@@ -71,8 +71,8 @@ public class SEM implements Temporizador{
 		public void cargarCredito(int numTelefono, int credito) {
 			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
 		} 
-		public void cargarInfraccion(String patente) {
-			this.getMyInfraccion().cargarInfraccion(patente);
+		public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
+			this.getMyInfraccion().cargarInfraccion(patente, inspector, zona);
 		}
 		public Zona obtenerZonaDe(GPS gps) {
 			return this.getMyZona().obtenerZonaDe(gps);
@@ -86,5 +86,8 @@ public class SEM implements Temporizador{
 		}
 		public ArrayList<String> iniciarNuevoEstacionamiento(App app) {
 			return this.getMyEstacionamiento().iniciarNuevoEstacionamiento(app);
+		}
+		public void crearUsuarioDesdeApp(App app,int numTel) {
+			this.getMyGestionUsuario().crearUsuarioDesdeApp(app,numTel);
 		}
 }
