@@ -6,7 +6,7 @@ public class SEMGestionZona {
 
 	private ArrayList<Zona> zonas;
 
-	private ArrayList<Zona> getZonas() {
+	private ArrayList<Zona> getZonas(){
 		return zonas;
 	}
 
@@ -14,5 +14,15 @@ public class SEMGestionZona {
 		super();
 		this.zonas = new ArrayList<Zona>();
 	}
+	
+	public Zona obtenerZonaDe(Punto punto) {
+		for (Zona zona : this.zonas) {
+			if (zona.lePertenece(punto)) {
+				return zona;
+			}
+		}
+		return null;
+	} 
+	
 	
 }

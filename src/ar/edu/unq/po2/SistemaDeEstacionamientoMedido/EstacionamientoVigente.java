@@ -18,6 +18,13 @@ public class EstacionamientoVigente {
 		return this.patente;
 	}
 	
+	public int getHoraInicial() {
+		return this.horaInicio;
+	}
+	public int getHoraFinal() {
+		return this.horaFinal;
+	}
+	
 	public boolean esMismaPatente(String patente) {
 		return this.getPatente().equals(patente); 
 	}
