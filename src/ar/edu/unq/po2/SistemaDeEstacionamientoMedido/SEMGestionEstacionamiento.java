@@ -10,7 +10,7 @@ public class SEMGestionEstacionamiento{
 	private final int precioEstacionamiento = 40;
 	private ArrayList<EstacionamientoVigente> estacionamientosActuales;
 
-	private ArrayList<EstacionamientoVigente> getEstacionamientosActuales() {
+	public ArrayList<EstacionamientoVigente> getEstacionamientosActuales() {
 		return estacionamientosActuales;
 	}
 
@@ -19,7 +19,6 @@ public class SEMGestionEstacionamiento{
 		this.estacionamientosActuales = new ArrayList<EstacionamientoVigente>();
 		this.gestionApp = new SEMGestionApp(sem,this);
 		this.sem = sem;
-
 	}
 	
 	public SEMGestionApp getGestionApp() {
@@ -29,6 +28,7 @@ public class SEMGestionEstacionamiento{
 	public int getPrecioEstacionamientoPorHora() {
 		return precioEstacionamiento;
 	}
+	
 	public boolean esEstacionamientoVigente(String patente) {
 		return this.getEstacionamientosActuales().stream().anyMatch(p -> p.esMismaPatente(patente));
 	}
@@ -41,7 +41,6 @@ public class SEMGestionEstacionamiento{
 	        }
 	    }
 	    throw new Exception("Se busco un estacionamiento sin verificar su existencia");
-		
 	}
 
 	public void removerEstacionamientoVigente(EstacionamientoVigente estacionamiento) {
@@ -55,13 +54,11 @@ public class SEMGestionEstacionamiento{
 	}
 
 	public void finEstacionamiento(String patente) throws Exception{
-		//TODO Tirar error(mediante algun mensaje o algo) o salvarlo con if, si la patente dada no existe dentro de la lista de estacionamientoVigente.
-		if(this.esEstacionamientoVigente(patente)){
-			
+		if(this.esEstacionamientoVigente(patente)){		
 			this.removerEstacionamientoVigente(this.getEstacionamientoDe(patente));
 		}
-		
 	}
+	
 	public ArrayList<String> iniciarNuevoEstacionamiento(App app) {
 		return this.getGestionApp().iniciarNuevoEstacionamiento(app);
 	}
@@ -89,7 +86,6 @@ public class SEMGestionEstacionamiento{
 		if(this.esHoraDeFinalizar()) {
 			this.finalizarTodosLosEstacionamientos();
 		}
-		
 	}
 
 	private boolean esHoraDeFinalizar() {
@@ -98,13 +94,12 @@ public class SEMGestionEstacionamiento{
 	}
 
 	public void finalizarTodosLosEstacionamientos() {
-		
 		for(EstacionamientoVigente estacionamiento: this.getEstacionamientosActuales()) {
 			this.removerEstacionamientoVigente(estacionamiento);
 			estacionamiento.enviarNotificacion(this);
 		}
-		
 	}
+	
 	public void notificarUsuario(int numTelefono) {
 		// TODO Auto-generated method stub
 		
