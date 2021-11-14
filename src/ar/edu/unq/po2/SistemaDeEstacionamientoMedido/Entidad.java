@@ -16,4 +16,11 @@ public class Entidad {
 		this.avisosRecibidos.add(aviso);
 	}
 	
+	public ArrayList<AvisoGenerico> getAvisosRecibidos(){
+		return this.avisosRecibidos;
+	}
+	
+	public void desuscribirseEn(SEM sem) {
+		sem.desuscribir(this);
+	}
 }
