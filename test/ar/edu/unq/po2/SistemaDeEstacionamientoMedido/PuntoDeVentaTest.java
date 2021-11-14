@@ -48,7 +48,16 @@ class PuntoDeVentaTest {
 		this.puntoDeVenta.cargarCredito(numeroDeUsuarioInexistente, 80);
 		
 		assertFalse(usuarioInexistentePreviaCarga == this.sem.getUsuario(numeroDeUsuarioInexistente));
-
+	}
+	
+	@Test
+	void cuandoSeFinalizaUnEstacionamientoConUnaPatenteQueNoExiste_ElSEMNoHaceNada() throws Exception {
+		int cantidadEstacionamientosEsperados = sem.getMyEstacionamiento().getEstacionamientosActuales().size(); // Cantidad de estacionamientos actuales previos
+		 
+		sem.finEstacionamiento("ABC123"); // Se finaliza el estacionamiento de una patente que no existe
+		
+		assertFalse(sem.esEstacionamientoVigente("ABC123"));
+		assertEquals(sem.getMyEstacionamiento().getEstacionamientosActuales().size(), cantidadEstacionamientosEsperados); // Se comprueba que el SEM no hace nada ante eso
 	}
 
 }

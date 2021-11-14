@@ -62,9 +62,6 @@ public class SEM implements Temporizador{
 		public EstacionamientoVigente getEstacionamientoDe(String patente) throws Exception { 
 			return this.getMyEstacionamiento().getEstacionamientoDe(patente);
 		}
-		public void removerEstacionamientoVigente(EstacionamientoVigente estacionamiento) {
-			this.getMyEstacionamiento().removerEstacionamientoVigente(estacionamiento);
-		}
 		public void agregarNuevoEstacionamiento(EstacionamientoVigente estacionamiento) {
 			this.getMyEstacionamiento().agregarNuevoEstacionamiento(estacionamiento);
 		}
