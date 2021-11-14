@@ -5,41 +5,55 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 class APPInspectorTest {
 	
 	private APPInspector appInspector;
 	private SEM sem;
 	private Celular celular;
+	private Zona zona;
+	private EstacionamientoVigente estacionamiento;
 
 	@BeforeEach
 	public void setUp() throws Exception {
 		this.sem          = new SEM();
 		this.celular      = new Celular(123123);
-		this.inspector    = new Inspector("Leo", )
-		this.appInspector = new APPInspector(sem, celular);;
+		this.zona         = new Zona("Roberto");
+		this.appInspector = new APPInspector(this.sem, this.celular, this.zona);
+		
+		Punto punto = new Punto();
+		zona.agregarPunto(punto); // todos los puntos son iguales, es decir, el punto de la zona asignada al inspector será el mismo donde está
+			                      // el inspector actualmente, por lo que tendrá derecho a hacer la infracción
+		
+		
+		this.estacionamiento = new EstacionamientoVigente("ABC123", 12, 14, this.zona);
 	}
 	
 	@Test
 	void cuandoUnaAPPInspectorPreguntaSiUnaPatenteEsEstacionamientoVigenteYNoLoEs_RecibeUnaRespuestaNegativa() {
-		assertFalse(appInspector.esEstacionamientoVigente("ABC123"));
+		assertFalse(appInspector.esEstacionamientoVigente("ABC123"), "Error en no es un estacionamiento vigente");
 	}
 	
 	@Test
 	void cuandoUnaAPPInspectorPreguntaSiUnaPatenteEsEstacionamientoVigenteYLoEs_RecibeUnaRespuestaPositiva() {
-		//TODO: Hacer con EstacionamientoVigente
-		assertFalse(appInspector.esEstacionamientoVigente("ABC123")); 
+		sem.agregarNuevoEstacionamiento(estacionamiento);
+		
+		assertTrue(appInspector.esEstacionamientoVigente("ABC123"), "Error en es un estacionamiento vigente"); 
 	}
 	
 	@Test
 	void cuandoUnaPatenteNoTieneUnEstacionamientoVigente_LaAppInspectorLeCargaUnaInfraccion() {		
-		appInspector.verificarPatente("ABC123"); // la patente ABC123 no tiene un estacionamiento vigente
-		assertEquals(sem.getMyInfraccion().getInfracciones().size(), 1);
-		assertEquals(sem.getMyInfraccion().getInfracciones().get(0).getPatente(), "ABC123");
-		// utilizo el .get(0) porque hay una única infracción en la lista de infracciones
+		appInspector.verificarPatente("34VCS"); // la patente 34VCS no tiene un estacionamiento vigente
+		
+		assertEquals(sem.getMyInfraccion().getCantidadDeInfracciones(), 1, "Error en cargar la infracción correspondiente"); //el inspector ha cargado la infracción
 	}
 	
 	@Test
 	void cuandoUnaPatenteTieneUnEstacionamientoVigente_LaAppInspectorNoLeCargaUnaInfraccion() {
-		// TODO: hacer con EstacionamientoVigente
+		sem.agregarNuevoEstacionamiento(estacionamiento);
+		
+		appInspector.verificarPatente("ABC123"); //ABC123 es una patente que tiene un estacionamiento en la zona de inspección del inspector
+		
+		assertEquals(sem.getMyInfraccion().getCantidadDeInfracciones(), 0); //el inspector no ha cargado la infracción
 	}
 }
