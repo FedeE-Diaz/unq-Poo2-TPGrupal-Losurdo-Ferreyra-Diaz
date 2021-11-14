@@ -38,10 +38,7 @@ class PuntoDeVentaTest {
 		assertEquals(this.appUsuario.saldoDisponible(), creditoEsperado);
 	}
 
-	@Test
-	void testGetHoraActual() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	void testCargarCredito() {

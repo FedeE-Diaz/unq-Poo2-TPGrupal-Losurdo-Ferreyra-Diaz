@@ -12,11 +12,13 @@ public class PuntoDeVenta {
 	}
 	
 	public void iniciarEstacionamiento(String patente,int horas) {
-		this.sem.agregarNuevoEstacionamiento(new EstacionamientoVigente(patente, getHoraActual(), horas ,this.zona));
+		EstacionamientoVigente nuevoEstacionamiento = new EstacionamientoVigente(patente, getHoraActual(), horas ,this.zona);
+		this.sem.agregarNuevoEstacionamiento(nuevoEstacionamiento);
+		this.sem.registrarNuevoEstacionamiento(nuevoEstacionamiento, this);
 	}
 	
 	public int getHoraActual() {
-		return 8;
+		return this.sem.getHoraSistema();
 	}
 	
 	public void cargarCredito(int numero, int monto) {

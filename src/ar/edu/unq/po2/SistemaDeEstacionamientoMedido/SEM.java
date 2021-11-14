@@ -87,6 +87,9 @@ public class SEM implements Temporizador{
 		public Usuario getUsuario(int numero) {
 			return this.getMyGestionUsuario().getUsuarioDe(numero);
 		}
+		public int getHoraSistema() {
+			return this.reloj.getHoraActual();
+		}
 		@Override
 		public void actualizarReloj() {
 			this.getMyEstacionamiento().actualizarEstadoEstacionamiento();
