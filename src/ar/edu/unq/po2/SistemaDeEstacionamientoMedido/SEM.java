@@ -71,8 +71,8 @@ public class SEM implements Temporizador{
 		public void cargarCredito(int numTelefono, int credito) {
 			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
 		} 
-		public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
-			this.getMyInfraccion().cargarInfraccion(patente, inspector, zona);
+		public void cargarInfraccion(String patente, Zona zona) {
+			this.getMyInfraccion().cargarInfraccion(patente, zona);
 		}
 		public Zona obtenerZonaDe(Punto punto) {
 			return this.getMyZona().obtenerZonaDe(punto); // Si el punto no existe en ninguna zona, entonces devuelve null
