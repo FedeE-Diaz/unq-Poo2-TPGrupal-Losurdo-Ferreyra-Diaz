@@ -18,6 +18,10 @@ public class Zona {
 		return this.puntos.contains(punto);
 	}
 	
+	public void agregarPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
+		this.puntosDeVenta.add(puntoDeVenta);
+	}
+	
 	
 	
 	
