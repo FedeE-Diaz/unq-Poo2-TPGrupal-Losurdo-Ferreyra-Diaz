@@ -44,6 +44,7 @@ class AppTest {
 		clienteApp1.setPatente("M3M3NT0M0R1");
 		assertEquals("M3M3NT0M0R1", clienteApp1.getPatente());
 	}
+	
 	@Test
 	void testGetModo() {
 		Automatico nuevoModo = new Automatico(clienteApp1);
@@ -51,6 +52,7 @@ class AppTest {
 		clienteApp1.setModo(nuevoModo);
 		assertEquals(nuevoModo, clienteApp1.getModo());
 	}
+	
 	@Test
 	void testSetModo() {
 		Manual nuevoModo = new Manual(clienteApp1);
@@ -61,19 +63,18 @@ class AppTest {
 
 	@Test
 	void testGetNumeroTelefono() {
-		assertEquals(celu1.getNumero(), clienteApp1.getNumeroTelefono());
+		assertEquals(celu2.getNumero(), clienteApp2.getNumeroTelefono());
 	}
+	
 
 	@Test
-	void testApp() {
-		fail("Not yet implemented");
+	void testAvisosSegunModo() {
+		assertEquals(null, clienteApp1.walking());
+		
+		clienteApp1.cambiarModo();
+		
 	}
-
-	@Test
-	void testCambiarModo() {
-		fail("Not yet implemented");
-	}
-
+/*
 	@Test
 	void testConsultarSaldoDisponible() {
 		fail("Not yet implemented");
@@ -123,5 +124,5 @@ class AppTest {
 	void testEstoyEnUnaZonaDeEstacionamientoMedido() {
 		fail("Not yet implemented");
 	}
-
+*/
 }
