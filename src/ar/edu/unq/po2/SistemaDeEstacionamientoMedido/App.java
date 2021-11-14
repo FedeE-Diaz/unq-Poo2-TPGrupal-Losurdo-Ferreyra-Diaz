@@ -33,9 +33,19 @@ public class App implements MovementSensor{
 	public void setModo(Modo modo) {
 		this.modo = modo;
 	}
+	
+	public Modo getModo() {
+		return modo;
+	}
+
+	public Celular getCelular() {
+		return celular;
+	}
+
 	public int getNumeroTelefono() {
 		return celular.getNumero();
 	}
+	
 
 	public App(SEM sem,String patente, Celular celular) {
 		super();
@@ -48,7 +58,7 @@ public class App implements MovementSensor{
 	}
 	
 	public void cambiarModo() {
-		modo.cambiarModo();
+		this.getModo().cambiarModo();
 	}
 	
 
@@ -62,11 +72,11 @@ public class App implements MovementSensor{
 	
 	public void iniciarEstacionamiento(String patente) {
 		
-		modo.iniciarEstacionamiento(patente);
+		this.getModo().iniciarEstacionamiento(patente);
 	}
 	public void finalizarEstacionamiento(String patente) {
 		
-		modo.finalizarEstacionamiento(patente);
+		this.getModo().finalizarEstacionamiento(patente);
 	}
 	
 	
@@ -75,12 +85,12 @@ public class App implements MovementSensor{
 	
 	public void driving() {
 		
-		modo.asistenciaFinEstacionamiento();
+		this.getModo().asistenciaFinEstacionamiento();
 	}
 	
 	public void walking() {
 		
-		modo.asistenciaInicioEstacionamiento();
+		this.getModo().asistenciaInicioEstacionamiento();
 	}
 
 	public Zona getZonaActual() {
