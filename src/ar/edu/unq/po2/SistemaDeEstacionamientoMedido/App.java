@@ -142,13 +142,5 @@ public class App implements MovementSensor{
 
 
 }
-/* Asistencia al usuario: En el primer caso los usuarios reciben multas por una omisión involuntaria, mientras que
-en el segundo caso pierden dinero por extender el registro de estacionamiento hasta el final del
-día, también de forma involuntaria.
-------------------------------------------
-hacer algo que por cada hora que pase desde que se inicio el estacionamientoApp,se le vaya restando credito al usuario,
-hasta que este lo detenga,se registre un movimiento de gps o lleguen las 8
-
- */
 
 
