@@ -35,4 +35,8 @@ public class Temporizador {
 			listener.actualizarHora(this.ultimaHoraRegistrada);
 		}
 	}
+	public void simularHora(int hora,int minutos) {
+		this.setUltimaHoraRegistrada(this.ultimaHoraRegistrada.withHour(hora));
+		this.setUltimaHoraRegistrada(this.ultimaHoraRegistrada.withMinute(minutos));
+	}
 }

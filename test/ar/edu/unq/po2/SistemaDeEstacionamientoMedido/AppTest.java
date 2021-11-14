@@ -33,6 +33,7 @@ class AppTest {
 		zona1.agregarPunto(new Punto());
 		sem.agregarZona(zona1);
 		temporizadorSem = this.sem.getTemporizador();
+		temporizadorSem.simularHora(7, 0);
 		
 	}
 	@Test
@@ -73,9 +74,32 @@ class AppTest {
 		assertEquals(celu2.getNumero(), clienteApp2.getNumeroTelefono());
 	}
 	
-
+/*
 	@Test
 	void testAvisosDeInicioSegunModo() {
+		clienteApp1.agregarSubscriptor(consola);
+		ArrayList<String> respuestaEsperada = new ArrayList<String>();
+		respuestaEsperada.add("Alerta: Estas a punto de irte de tu auto sin haber realizado un estacionamiento");
+		
+		assertEquals(respuestaEsperada, clienteApp1.getModo().asistenciaInicioEstacionamiento());
+		
+		clienteApp1.cambiarModo();
+		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
+		respuestaEsperada2.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
+		respuestaEsperada2.add("Saldo insuficiente. Estacionamiento no permitido.");
+		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaInicioEstacionamiento());
+		
+		
+	}*/
+	@Test
+	void testSubscribirInterfazGrafica() {
+		clienteApp1.agregarSubscriptor(consola);
+		
+		assertTrue(clienteApp1.getSubscriptores().contains(consola));
+		
+	}
+/*	@Test
+	void testAvisosDeFinalSegunModo() {
 		clienteApp1.agregarSubscriptor(consola);
 		ArrayList<String> respuestaEsperada = new ArrayList<String>();
 		respuestaEsperada.add("Alerta: Estas a punto de irte de tu auto sin haber realizado un estacionamiento");
@@ -86,17 +110,7 @@ class AppTest {
 		respuestaEsperada2.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
 		respuestaEsperada2.add("Saldo insuficiente. Estacionamiento no permitido.");
 		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaInicioEstacionamiento());
-		
-		
-	}
-	@Test
-	void testSubscribirInterfazGrafica() {
-		clienteApp1.agregarSubscriptor(consola);
-		
-		assertTrue(clienteApp1.getSubscriptores().contains(consola));
-		
-	}
-	
+	}*/
 
 	@Test
 	void testConsultarSaldoDisponible() {
@@ -180,7 +194,7 @@ class AppTest {
 	void testCuandoSeHacenLas20LosEstacionamientosFinalizan() {
 		puntoDeVenta.cargarCredito(1120132014, 600);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		this.temporizadorSem.simularTiempo(240);
+		this.temporizadorSem.simularTiempo(780);
 		
 		assertFalse(sem.esEstacionamientoVigente("abc-123"));
 	}
