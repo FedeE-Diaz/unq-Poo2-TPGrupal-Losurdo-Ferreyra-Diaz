@@ -25,6 +25,7 @@ public class SEMGestionUsuario {
 			this.sumarCreditoA(numTelefono,credito);
 		}
 	}
+	
 	public void sumarCreditoA(int numTelefono, int credito) {
 		this.getUsuarioDe(numTelefono).sumarCredito(credito);
 	}
@@ -43,7 +44,7 @@ public class SEMGestionUsuario {
 			this.getUsuarioDe(numTel).setApp(app);
 		}
 		else {
-			Usuario usuario = this.crearUsuario(numTel, numTel, app);
+			Usuario usuario = this.crearUsuario(numTel, 0, app);
 			this.agregarUsuario(usuario);
 		}
 	}
