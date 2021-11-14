@@ -165,11 +165,20 @@ class AppTest {
 	
 	@Test
 	void testCuandoUnaAppIniciaUnEstacionamientoYTranscurreMenosDeUnaHoraElCreditoNoCambia() {
-		puntoDeVenta.cargarCredito(1120132014, 40);
+		puntoDeVenta.cargarCredito(1120132014, 80);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		this.sem.reloj.
+		this.sem.reloj.// reloj simule que trascurra 30 mins
 		
-		assertEquals("Su saldo disponible es: 0",clienteApp1.consultarSaldoDisponible());
+		assertEquals("Su saldo disponible es: 40",clienteApp1.consultarSaldoDisponible());
+	}
+	
+	@Test
+	void testCuandoUnUsuarioPreExisteAUnaAppLaCreacionLeAsginaLaAppAlUsuario() {
+		App app;
+		puntoDeVenta.cargarCredito(1234, 200);
+		app = new App(this.sem,"abc-123", new Celular(1234));
+		
+		assertEquals("Su saldo disponible es: 200", app.consultarSaldoDisponible());
 	}
 	/*
 	@Test
