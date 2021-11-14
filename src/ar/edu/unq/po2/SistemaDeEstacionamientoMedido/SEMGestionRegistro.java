@@ -10,7 +10,5 @@ public class SEMGestionRegistro {
 	public SEMGestionRegistro() {
 		super();
 		this.registros = new ArrayList<Registro>();
-	}
-	
-	
+	}	
 }

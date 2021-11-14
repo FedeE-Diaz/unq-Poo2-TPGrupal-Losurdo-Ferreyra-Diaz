@@ -5,19 +5,17 @@ import java.util.ArrayList;
 public class SEMGestionUsuario {
 
 	private ArrayList<Usuario> listaDeUsuarios;
-	private SEM sem;
 
 	public ArrayList<Usuario> getListaDeUsuarios() {
 		return listaDeUsuarios;
 	}
 
-	public SEMGestionUsuario(SEM sem) {
+	public SEMGestionUsuario() {
 		super();
 		this.listaDeUsuarios = new ArrayList<Usuario>();
-		this.sem = sem;
 	}
 
-	public void cargarCredito(int numTelefono, int credito, PuntoDeVenta puntoDeVenta) {
+	public void cargarCredito(int numTelefono, int credito) {
 		if(!this.esUsuarioExistente(numTelefono)) {
 			Usuario usuario = this.crearUsuario(numTelefono,credito,null); 
 			//quiza en vez de pasarle un null,pasarle una app random?
@@ -26,8 +24,8 @@ public class SEMGestionUsuario {
 		else {
 			this.sumarCreditoA(numTelefono,credito);
 		}
-		this.sem.registarCompraCredito(numTelefono, credito, puntoDeVenta);
 	}
+	
 	public void sumarCreditoA(int numTelefono, int credito) {
 		this.getUsuarioDe(numTelefono).sumarCredito(credito);
 	}
