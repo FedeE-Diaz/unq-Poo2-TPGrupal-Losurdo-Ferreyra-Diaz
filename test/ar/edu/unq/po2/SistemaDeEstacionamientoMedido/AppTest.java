@@ -141,22 +141,14 @@ class AppTest {
 		clienteApp2.iniciarEstacionamiento(clienteApp2.getPatente());
 		clienteApp2.driving();
 		}
-/*
-	@Test
-	void testDrivingCaso2() {
-		//TODO caso que falta
-	}
-*/
+	
 	@Test
 	void testWalkingIrseSinHaberHechoEstacionamiento() {
 		clienteApp2.agregarSubscriptor(consola);
 		clienteApp2.getUsuario().sumarCredito(40);
 		clienteApp2.walking();
 	}
-	@Test
-	void testWalkingSinRespuesta() {
-		//TODO sin respuesta porque la condicion para dar el aviso no fue cumplida
-	}
+
 	@Test
 	void testCuandoUnaAppIniciaUnEstacionamientoElCreditoDelUsuarioSeConsume() {
 		puntoDeVenta.cargarCredito(1120132014, 40);
@@ -192,25 +184,4 @@ class AppTest {
 		
 		assertFalse(sem.esEstacionamientoVigente("abc-123"));
 	}
-	/*
-	@Test
-	void testGetZonaActual() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testHayEstacionamientoVigente() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEstoyEnElMismoPuntoQueElEstacionamiento() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEstoyEnUnaZonaDeEstacionamientoMedido() {
-		fail("Not yet implemented");
-	}
-*/
 }
