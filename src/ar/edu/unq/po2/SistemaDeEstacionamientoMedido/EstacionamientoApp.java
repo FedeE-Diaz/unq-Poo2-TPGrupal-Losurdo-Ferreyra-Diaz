@@ -15,6 +15,7 @@ public class EstacionamientoApp extends EstacionamientoVigente {
 		
 	}
 	
+	@Override
 	public Punto getUbicacion() {
 		return this.puntoInicial;
 	}
