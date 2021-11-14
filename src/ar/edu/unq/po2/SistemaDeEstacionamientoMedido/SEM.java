@@ -93,6 +93,9 @@ public class SEM implements Temporizador{
 		public int getHoraSistema() {
 			return this.reloj.getHoraActual();
 		}
+		public void suscribir(Entidad entidad) {
+			this.gestionMonitoreo.subscribirse(entidad);
+		}
 		@Override
 		public void actualizarReloj() {
 			this.getMyEstacionamiento().actualizarEstadoEstacionamiento();
