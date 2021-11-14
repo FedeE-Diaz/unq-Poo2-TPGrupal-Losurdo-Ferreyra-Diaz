@@ -22,6 +22,10 @@ public class Zona {
 		return false;
 	}
 	
+	public void agregarPuntoDeVenta(PuntoDeVenta puntoDeVenta) {
+		this.puntosDeVenta.add(puntoDeVenta);
+	}
+	
 	public String getInspector() {
 		return inspector;
 	}
@@ -29,4 +33,5 @@ public class Zona {
 	public void agregarPunto(Punto punto) {
 		this.puntos.add(punto);
 	}
+
 }

@@ -4,8 +4,10 @@ public class PuntoDeVenta {
 	private SEM sem;
 	private Zona zona;
 	
-	public PuntoDeVenta(SEM sem) {
+	public PuntoDeVenta(SEM sem, Zona zona) {
 		this.sem = sem;
+		this.zona = zona;
+		this.zona.agregarPuntoDeVenta(this);
 		
 	}
 	
