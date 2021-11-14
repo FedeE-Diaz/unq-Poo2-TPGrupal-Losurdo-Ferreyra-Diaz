@@ -3,35 +3,29 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Reloj {
+public class Reloj implements TemporizadorListener {
 	
-	private ArrayList<Temporizador> subscriptores;
 	private LocalDateTime tiempoActual;
 	// Hacer de TIMER nuestro observado? y que el semEstacionamiento o el comun sea el listener? implementando una interfaz updateTime()?
-
-	
-	
-	public int getHoraActual() {
-		LocalDateTime localDate = LocalDateTime.now();
-		return localDate.getHour();
-	}
-	
 	
 	public Reloj() {
 		super();
-		this.subscriptores = new ArrayList<Temporizador>();
+		new ArrayList<Temporizador>();
 		this.tiempoActual = LocalDateTime.now();
 	}
 	
-	public void simularPasoDelTiempo(long minutos) {
-		this.tiempoActual.plusMinutes(minutos);
-	}
-	public void agregarObservador(Temporizador listener) {
-		subscriptores.add(listener);
+	public int getHoraActual() {
+		return tiempoActual.getHour();
 	}
 
-	public void removerObservador(Temporizador listener) {
-		subscriptores.remove(listener);
+	@Override
+	public void actualizarHora(LocalDateTime horaActualizada) {
+		this.tiempoActual = horaActualizada;		
+	}
+
+	@Override
+	public void subscribirse(Temporizador temporizador) {
+		temporizador.subscribirListener(this);		
 	}
 
 //	public static 
