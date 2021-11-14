@@ -92,7 +92,6 @@ public class SEMGestionEstacionamiento{
 		for(EstacionamientoVigente estacionamiento: this.getEstacionamientosActuales()) {
 			this.removerEstacionamientoVigente(estacionamiento);
 			estacionamiento.enviarNotificacion(this);
-			//TODO: agregar un mensaje hook o algo que se encargue de enviar el mensaje a la app de los estacionamientosApp de que termino 
 		}
 		
 	}
