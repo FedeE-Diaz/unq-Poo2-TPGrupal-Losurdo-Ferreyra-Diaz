@@ -135,6 +135,10 @@ public class App implements MovementSensor{
 		this.getSubscriptores().add(sub);
 	}
 
+	public Punto getPuntoActual() {
+		return this.celular.getPunto();
+	}
+
 
 
 }

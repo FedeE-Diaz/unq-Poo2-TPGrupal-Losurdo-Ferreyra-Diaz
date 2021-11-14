@@ -15,5 +15,9 @@ public class Celular {
 	public GPS getGPS() {
 		return gps; // creo q con esto directamente, ya estaria en vez del getPosicion()
 	}
+	public Punto getPunto() {
+		return this.gps.getUbicacionActual();
+		
+	}
 	
 }

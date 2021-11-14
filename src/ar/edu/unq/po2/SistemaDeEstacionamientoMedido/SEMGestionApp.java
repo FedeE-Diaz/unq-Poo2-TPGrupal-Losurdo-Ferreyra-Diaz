@@ -54,7 +54,7 @@ public class SEMGestionApp {
 
 	private EstacionamientoVigente nuevoEstacionamientoApp(String patente,App app) {
 
-		return new EstacionamientoApp(patente,sem.getReloj().getHoraActual(),this.calculoHoraFinal(app),app.getZonaActual(),app.getNumeroTelefono());
+		return new EstacionamientoApp(patente,sem.getReloj().getHoraActual(),this.calculoHoraFinal(app),app.getZonaActual(),app.getNumeroTelefono(), app.getPuntoActual());
 	}
 
 	private int calculoHoraFinal(App app) {
