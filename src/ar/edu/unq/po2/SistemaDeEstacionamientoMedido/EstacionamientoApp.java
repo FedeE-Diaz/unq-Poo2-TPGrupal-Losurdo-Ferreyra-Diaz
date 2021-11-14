@@ -35,6 +35,7 @@ public class EstacionamientoApp extends EstacionamientoVigente {
 	public void actualizar(int horaActual, SEMGestionEstacionamiento semGestionEstacionamiento){
 		if(correspondeCobrar(horaActual)){
 			this.cobrarEn(semGestionEstacionamiento);
+			horasCobradas ++;
 		}
 	}
 
