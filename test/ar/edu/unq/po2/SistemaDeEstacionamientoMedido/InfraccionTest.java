@@ -32,7 +32,8 @@ class InfraccionTest {
 
 	@Test
 	void testGetFechaYHora() {
-		assertEquals(infraccion1.getFechaYHora(), fechaHora, "Error en obtener la fecha y hora");
+		assertEquals(infraccion1.getFechaYHora().getHour(), fechaHora.getHour(), "Error en obtener la hora");
+		assertEquals(infraccion1.getFechaYHora().getDayOfYear(), fechaHora.getDayOfYear(), "Error en obtener la fecha");
 	}
 
 	@Test
