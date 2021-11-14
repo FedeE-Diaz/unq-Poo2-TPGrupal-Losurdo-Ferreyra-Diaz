@@ -21,7 +21,7 @@ public class Automatico extends ModoActivo{
 	}
 
 	@Override
-	protected ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento(){
+	protected ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento() throws Exception{
 		ArrayList<String> respuesta = new ArrayList<String>();
 		respuesta.add("Se ha finalizado el estacionamiento actual automaticamente");
 		this.finalizarEstacionamiento(this.getApp().getPatente());

@@ -54,13 +54,7 @@ class AppTest {
 		assertEquals("M3M3NT0M0R1", clienteApp1.getPatente());
 	}
 	
-	@Test
-	void testGetModo() {
-		Automatico nuevoModo = new Automatico(clienteApp1);
-		
-		clienteApp1.setModo(nuevoModo);
-		assertEquals(nuevoModo, clienteApp1.getModo());
-	}
+
 	
 	@Test
 	void testSetModo() {
@@ -127,16 +121,16 @@ class AppTest {
 	}														 // ¿Pero nos interesa que vuelva a la patente de antes?
 
 	@Test
-	void testFinalizarEstacionamiento() {
+	void testFinalizarEstacionamiento() throws Exception {
 		clienteApp1.getUsuario().sumarCredito(40);
 		clienteApp1.iniciarEstacionamiento(clienteApp1.getPatente());
 		assertTrue(clienteApp1.hayEstacionamientoVigente());
 		clienteApp1.finalizarEstacionamiento(clienteApp1.getPatente());
-		assertFalse(clienteApp1.hayEstacionamientoVigente());
+		assertFalse(sem.esEstacionamientoVigente("M3M0RY-13"));
 	}
 	
 	@Test
-	void testDriving() {
+	void testDriving() throws Exception{
 		clienteApp2.cambiarModo();
 		clienteApp2.agregarSubscriptor(consola);
 		clienteApp2.getUsuario().sumarCredito(40);

@@ -62,4 +62,9 @@ public class SEMGestionUsuario {
 	private void removerUsuario(Usuario usuario) {
 		this.getListaDeUsuarios().remove(usuario);
 	}
+
+	public void descontarCredito(int precio, int numTelefono) {
+		this.getUsuarioDe(numTelefono).restarCredito(precio);
+		
+	}
 }

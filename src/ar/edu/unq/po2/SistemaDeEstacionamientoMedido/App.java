@@ -81,7 +81,7 @@ public class App implements MovementSensor{
 		
 		return this.getModo().iniciarEstacionamiento(patente);
 	}
-	public void finalizarEstacionamiento(String patente) {
+	public void finalizarEstacionamiento(String patente) throws Exception{
 		
 		this.getModo().finalizarEstacionamiento(patente);
 	}
@@ -90,7 +90,7 @@ public class App implements MovementSensor{
 	//En automatico: las alertas inician estacionamientos y finalizan automaticamente.
 	//En manual: solo avisa
 	
-	public void driving() {
+	public void driving() throws Exception{
 		
 		this.notificarALasInterfacesGraficas(this.getModo().asistenciaFinEstacionamiento());
 	}
@@ -121,7 +121,7 @@ public class App implements MovementSensor{
 		return sem.esEstacionamientoVigente(this.getPatente());
 	}
 
-	public boolean estoyEnElMismoPuntoQueElEstacionamiento() {
+	public boolean estoyEnElMismoPuntoQueElEstacionamiento() throws Exception {
 		//Para utilizar este metodo se debe utilizar en un short-circuit que determine previamente que dicho estacionamiento existe.
 		return this.obtenerUbicacionActual().esMismoPunto(sem.getEstacionamientoDe(this.getPatente()).getUbicacion());
 	}
