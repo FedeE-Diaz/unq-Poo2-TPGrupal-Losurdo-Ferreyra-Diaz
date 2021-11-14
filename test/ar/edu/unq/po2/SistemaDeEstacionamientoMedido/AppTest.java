@@ -17,6 +17,7 @@ class AppTest {
 	private Celular celu2;
 	private Consola consola;
 	private Zona zona1;
+	private PuntoDeVenta puntoDeVenta;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -27,6 +28,7 @@ class AppTest {
 		clienteApp2 = new App(sem, "R3MXR0SW41D",celu2);
 		consola = new Consola();
 		zona1 = new Zona("Jorge");
+		puntoDeVenta = new PuntoDeVenta(this.sem, this.zona1);
 		zona1.agregarPunto(new Punto());
 		sem.agregarZona(zona1);
 		
@@ -152,6 +154,22 @@ class AppTest {
 	@Test
 	void testWalkingSinRespuesta() {
 		//TODO sin respuesta porque la condicion para dar el aviso no fue cumplida
+	}
+	@Test
+	void testCuandoUnaAppIniciaUnEstacionamientoElCreditoDelUsuarioSeConsume() {
+		puntoDeVenta.cargarCredito(1120132014, 40);
+		clienteApp1.iniciarEstacionamiento("abc-123");
+		
+		assertEquals("Su saldo disponible es: 0",clienteApp1.consultarSaldoDisponible());
+	}
+	
+	@Test
+	void testCuandoUnaAppIniciaUnEstacionamientoYTranscurreMenosDeUnaHoraElCreditoNoCambia() {
+		puntoDeVenta.cargarCredito(1120132014, 40);
+		clienteApp1.iniciarEstacionamiento("abc-123");
+		this.sem.reloj.
+		
+		assertEquals("Su saldo disponible es: 0",clienteApp1.consultarSaldoDisponible());
 	}
 	/*
 	@Test

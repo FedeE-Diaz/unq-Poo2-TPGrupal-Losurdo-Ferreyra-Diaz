@@ -50,7 +50,8 @@ public class SEMGestionEstacionamiento{
 	}
 
 	public void agregarNuevoEstacionamiento(EstacionamientoVigente estacionamiento) {
-		this.getEstacionamientosActuales().add(estacionamiento); 
+		this.getEstacionamientosActuales().add(estacionamiento);
+		estacionamiento.actualizar(this.sem.getHoraSistema(),this);
 	}
 
 	public void finEstacionamiento(String patente) throws Exception{

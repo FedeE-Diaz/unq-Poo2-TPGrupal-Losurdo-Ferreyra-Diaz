@@ -1,6 +1,10 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
-public interface Temporizador {
+import java.time.LocalDateTime;
 
-	public void actualizarReloj();
+public interface Temporizador {
+	
+	LocalDateTime ultimaHoraRegistrada;
+	
+	//public void pasoDelTiempo (Evento pasoDelTiempo);
 }
