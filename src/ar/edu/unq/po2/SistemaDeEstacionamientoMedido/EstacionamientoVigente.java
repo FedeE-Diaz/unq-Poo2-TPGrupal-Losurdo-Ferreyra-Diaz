@@ -36,4 +36,8 @@ public class EstacionamientoVigente {
 	public void enviarNotificacion(SEMGestionEstacionamiento semGestor){
 		
 	}
+	public Punto getUbicacion() {
+		return new Punto();
+	}
+	
 }
