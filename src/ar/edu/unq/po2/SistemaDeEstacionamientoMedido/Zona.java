@@ -3,22 +3,30 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 import java.util.ArrayList;
 
 public class Zona {
-	private APPInspector appInspector;
+	private String inspector;
 	private ArrayList<PuntoDeVenta> puntosDeVenta;
 	private ArrayList<Punto> puntos;
 
-	public Zona(APPInspector appInspector) {
-		this.appInspector = appInspector;
+	public Zona(String inspector) {
+		this.inspector = inspector;
 		this.puntosDeVenta = new ArrayList<PuntoDeVenta>();
 		this.puntos = new ArrayList<Punto>();
 	}
 
 	public boolean lePertenece(Punto punto) {
-		
-		return this.puntos.contains(punto);
+		for(Punto p : this.puntos) {
+			if(p.esMismoPunto(punto)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	
-	
-	
+	public String getInspector() {
+		return inspector;
+	}
+
+	public void agregarPunto(Punto punto) {
+		this.puntos.add(punto);
+	}
 }

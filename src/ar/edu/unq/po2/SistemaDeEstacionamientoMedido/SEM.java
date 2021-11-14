@@ -71,8 +71,8 @@ public class SEM implements Temporizador{
 		public void cargarCredito(int numTelefono, int credito) {
 			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
 		} 
-		public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
-			this.getMyInfraccion().cargarInfraccion(patente, inspector, zona);
+		public void cargarInfraccion(String patente, Zona zona) {
+			this.getMyInfraccion().cargarInfraccion(patente, zona);
 		}
 		public Zona obtenerZonaDe(Punto punto) {
 			//TODO: implementar obtenerZonaDe en gestionZona
