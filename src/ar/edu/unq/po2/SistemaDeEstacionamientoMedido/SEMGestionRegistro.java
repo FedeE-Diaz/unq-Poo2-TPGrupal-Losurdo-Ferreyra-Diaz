@@ -29,7 +29,7 @@ public class SEMGestionRegistro {
 	
 	private void agregarRegistro(Registro registro) {
 		this.registros.add(registro);
-		ultimoNumControl +=1;
+		ultimoNumControl ++;
 	}
 
 	public int getCantidadDeRegistros() {

@@ -97,9 +97,9 @@ public class SEMGestionEstacionamiento{
 
 	public void finalizarTodosLosEstacionamientos() {
 		for(EstacionamientoVigente estacionamiento: this.getEstacionamientosActuales()) {
-			this.removerEstacionamientoVigente(estacionamiento);
 			estacionamiento.enviarNotificacion(this);
 		}
+		this.estacionamientosActuales.clear();
 	}
 	
 	public void notificarUsuario(int numTelefono) {
