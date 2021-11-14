@@ -167,7 +167,7 @@ class AppTest {
 	void testCuandoUnaAppIniciaUnEstacionamientoYTranscurreMenosDeUnaHoraElCreditoNoCambia() {
 		puntoDeVenta.cargarCredito(1120132014, 80);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		this.sem.reloj.// reloj simule que trascurra 30 mins
+		//this.sem.reloj.// reloj simule que trascurra 30 mins
 		
 		assertEquals("Su saldo disponible es: 40",clienteApp1.consultarSaldoDisponible());
 	}

@@ -8,10 +8,11 @@ public class EstacionamientoApp extends EstacionamientoVigente {
 	private int horasCobradas;
 	
 	
-	public EstacionamientoApp(String patente, int horaInicial, int horaFinal,Zona zona, int numTelefono){
+	public EstacionamientoApp(String patente, int horaInicial, int horaFinal,Zona zona, int numTelefono, Punto puntoInicial){
 		super(patente, horaInicial, horaFinal, zona);
 		this.numTelefono = numTelefono;
 		this.horasCobradas = 0;
+		this.puntoInicial = puntoInicial;
 	}
 	
 	public void enviarNotificacion(SEMGestionEstacionamiento semGestor) {
