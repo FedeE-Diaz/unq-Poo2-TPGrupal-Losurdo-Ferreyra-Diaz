@@ -14,7 +14,7 @@ public class PuntoDeVenta {
 	public void iniciarEstacionamiento(String patente,int horas) {
 		EstacionamientoVigente nuevoEstacionamiento = new EstacionamientoVigente(patente, getHoraActual(), horas ,this.zona);
 		this.sem.agregarNuevoEstacionamiento(nuevoEstacionamiento);
-		this.sem.registrarNuevoEstacionamiento(nuevoEstacionamiento, this);
+		this.sem.registrarNuevasHoras(horas, this);
 	}
 	
 	public int getHoraActual() {
@@ -24,7 +24,4 @@ public class PuntoDeVenta {
 	public void cargarCredito(int numero, int monto) {
 		this.sem.cargarCredito(numero, monto, this);
 	}
-	
-	
-	
 }

@@ -75,6 +75,9 @@ public class SEM implements Temporizador{
 		private void registarCompraCredito(int numTelefono, int credito, PuntoDeVenta puntoDeVenta) {
 			this.getMyRegistro().registrarCompraCredito(numTelefono, credito, puntoDeVenta);			
 		}
+		public void registrarNuevasHoras(int horas,	PuntoDeVenta puntoDeVenta) {
+			this.getMyRegistro().registrarCompraDeHoras(horas, puntoDeVenta);	
+		}
 		public void agregarZona(Zona zona) {
             this.getMyZona().agregarZona(zona);
         }
