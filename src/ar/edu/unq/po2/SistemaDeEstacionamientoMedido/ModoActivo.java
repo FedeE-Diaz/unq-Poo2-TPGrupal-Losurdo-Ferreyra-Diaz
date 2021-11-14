@@ -10,11 +10,12 @@ public abstract class ModoActivo implements Modo{
 		return app;
 	}
 
+
+	
 	public ModoActivo(App app) {
 		super();
 		this.app = app;
 	}
-
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
 		this.setearPatenteManualmente(patente);
@@ -30,10 +31,9 @@ public abstract class ModoActivo implements Modo{
 
 	/* Estas advertencias que se dan por un posible inicio/fin de estacionamiento, se activan 
 	 * al detectar un cambio en el tipo de desplazamiento del usuario (mediante la interfaz MovementSensor)
-	 * quien sea que se encargue de enviar estos mensajes tambien suponemos que enviaria el aviso a la interfaz grafica
-	 * (que sera un listener de los cambios de movimiento que realize el usuario), 
-	 * quiza haga falta agregar alguna linea extra para enviar esta notificacion a la interfaz grafica,pero 
-	 * por lo entendido en el trabajo,no es un requerimiento solicitado actualmente.  */
+	 * quien sea que se encargue de enviar estos mensajes provoca que se envie el aviso a la interfaz grafica
+	 * (que sera un listener de los cambios de movimiento que realize el usuario, el cual estaria subscrito a una lista en app),
+	 *  no implemento demás comportamiento relacionado a la interfaz grafica porque por lo entendido no forma parte de la evaluacion de este trabajo */
 	
 	@Override
 	public ArrayList<String> asistenciaInicioEstacionamiento() {
@@ -41,8 +41,9 @@ public abstract class ModoActivo implements Modo{
 			return this.notificarAdvertenciaSobreInicioEstacionamiento();
 		}
 		else {
-			return null; //La idea es que la interfaz grafica evalue que si el retorno es null, no debe mostrar nada. (Ya que las condiciones determinaban que no debia mostrar ningun aviso)
-		}
+			return null; //La idea es que la interfaz grafica evalue que si el retorno es null, no debe mostrar nada.
+						//(Ya que las condiciones determinaban que no debia mostrar ningun aviso)
+		}				//Esto se podria reemplazar con un arrayList<String> vacio y que entonces si está vacio no haga ningun popUp...es lo mismo
 	}
 	@Override
 	public ArrayList<String> asistenciaFinEstacionamiento() {
@@ -60,4 +61,7 @@ public abstract class ModoActivo implements Modo{
 
 	@Override
 	public abstract void cambiarModo();
+
+
+	
 }

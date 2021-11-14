@@ -1,5 +1,7 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
+import java.util.ArrayList;
+
 public class App implements MovementSensor{
 
 	private String patente; 
@@ -13,6 +15,7 @@ public class App implements MovementSensor{
 	private Modo modo; //Me parecio una buena idea aplicar un State para el modo automatico/manual.
 	private Celular celular;
 	private SEM sem;
+	private ArrayList<InterfacesGraficas> subscriptores;
 	
 	public Usuario getUsuario() { 
 		return sem.getUsuario(this.getNumeroTelefono());
@@ -43,9 +46,12 @@ public class App implements MovementSensor{
 	}
 
 	public int getNumeroTelefono() {
-		return celular.getNumero();
+		return getCelular().getNumero();
 	}
 	
+	public ArrayList<InterfacesGraficas> getSubscriptores() {
+		return subscriptores;
+	}
 
 	public App(SEM sem,String patente, Celular celular) {
 		super();
@@ -54,6 +60,7 @@ public class App implements MovementSensor{
 		this.patente = patente;
 		this.modo = new Manual(this); // TODO: ver en los test si esto funciona bien
 		this.celular = celular;
+		this.subscriptores = new ArrayList<InterfacesGraficas>();
 		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
 	}
 	
@@ -86,12 +93,20 @@ public class App implements MovementSensor{
 	
 	public void driving() {
 		
-		this.getModo().asistenciaFinEstacionamiento();
+		this.notificarALasInterfacesGraficas(this.getModo().asistenciaFinEstacionamiento());
 	}
 	
 	public void walking() {
+		this.notificarALasInterfacesGraficas(this.getModo().asistenciaInicioEstacionamiento());
 		
-		this.getModo().asistenciaInicioEstacionamiento();
+	}
+
+	private void notificarALasInterfacesGraficas(ArrayList<String> textoAMostrarEnPantalla) {
+
+		for(InterfacesGraficas ig : subscriptores) {
+			ig.popUpAviso(textoAMostrarEnPantalla); 
+		}
+		
 	}
 
 	public Zona getZonaActual() {
@@ -116,6 +131,10 @@ public class App implements MovementSensor{
 
 		return sem.obtenerZonaDe(this.obtenerUbicacionActual()) != null;
 	}
+	
+	public void agregarSubscriptor(InterfacesGraficas sub) {
+		this.getSubscriptores().add(sub);
+	}
 
 
 
@@ -127,8 +146,6 @@ día, también de forma involuntaria.
 hacer algo que por cada hora que pase desde que se inicio el estacionamientoApp,se le vaya restando credito al usuario,
 hasta que este lo detenga,se registre un movimiento de gps o lleguen las 8
 
-
-Btw falta programar despues en el SEM el: Monitoreo de estacionamientos
  */
 
 
