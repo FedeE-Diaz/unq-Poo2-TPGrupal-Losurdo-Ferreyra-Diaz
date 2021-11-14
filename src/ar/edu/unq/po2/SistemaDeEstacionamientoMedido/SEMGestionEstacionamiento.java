@@ -10,15 +10,15 @@ public class SEMGestionEstacionamiento{
 	private final int precioEstacionamiento = 40;
 	private ArrayList<EstacionamientoVigente> estacionamientosActuales;
 
-	public ArrayList<EstacionamientoVigente> getEstacionamientosActuales() {
-		return estacionamientosActuales;
-	}
-
 	public SEMGestionEstacionamiento(SEM sem) {
 		super();
 		this.estacionamientosActuales = new ArrayList<EstacionamientoVigente>();
 		this.gestionApp = new SEMGestionApp(sem,this);
 		this.sem = sem;
+	}
+	
+	public ArrayList<EstacionamientoVigente> getEstacionamientosActuales() {
+		return estacionamientosActuales;
 	}
 	
 	public SEMGestionApp getGestionApp() {
@@ -77,9 +77,8 @@ public class SEMGestionEstacionamiento{
 		 *   se vuelva a cobrar otros 40 por el estacionamiento.
 		 */
 		// por cada estacionamiento -> estacionamiento.actualizarEstado() o algo asi (verá si es momento de cobrar dinero o no)
-	
-		
 	}
+	
 	public void cobrarA(int numTelefono) {
 		this.sem.cobrarA(this.precioEstacionamiento, numTelefono);
 	}

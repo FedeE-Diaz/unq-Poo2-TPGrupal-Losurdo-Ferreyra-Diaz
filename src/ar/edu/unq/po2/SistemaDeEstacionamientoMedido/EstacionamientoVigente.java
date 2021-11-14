@@ -34,14 +34,13 @@ public class EstacionamientoVigente {
 	}
 	
 	public void enviarNotificacion(SEMGestionEstacionamiento semGestor){
-		
 	}
+	
 	public Punto getUbicacion() {
 		return new Punto();
 	}
 
 	public void actualizar(int horaActual, SEMGestionEstacionamiento semGestionEstacionamiento) {
-		
 	}
 	
 }
