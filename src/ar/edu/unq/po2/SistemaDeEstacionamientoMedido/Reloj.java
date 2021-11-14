@@ -8,9 +8,16 @@ public class Reloj {
 	private ArrayList<Temporizador> subscriptores;
 	// Hacer de TIMER nuestro observado? y que el semEstacionamiento o el comun sea el listener? implementando una interfaz updateTime()?
 
+	
+	
 	public int getHoraActual() {
 		LocalDateTime localDate = LocalDateTime.now();
 		return localDate.getHour();
+	}
+
+	public Reloj() {
+		super();
+		this.subscriptores = new ArrayList<Temporizador>();
 	}
 
 	public void agregarObservador(Temporizador listener) {

@@ -20,7 +20,7 @@ class AppTest {
 		celu1 = new Celular(1120132014);
 		celu2 = new Celular(1120162020);
 		clienteApp1 = new App(sem, "M3M0RY-13", celu1);
-		clienteApp1 = new App(sem, "R3MXR0SW41D",celu2);
+		clienteApp2 = new App(sem, "R3MXR0SW41D",celu2);
 	}
 	@Test
 	void testGetUsuario() {
@@ -44,16 +44,24 @@ class AppTest {
 		clienteApp1.setPatente("M3M3NT0M0R1");
 		assertEquals("M3M3NT0M0R1", clienteApp1.getPatente());
 	}
-
+	@Test
+	void testGetModo() {
+		Automatico nuevoModo = new Automatico(clienteApp1);
+		
+		clienteApp1.setModo(nuevoModo);
+		assertEquals(nuevoModo, clienteApp1.getModo());
+	}
 	@Test
 	void testSetModo() {
-		clienteApp1.setModo(new Automatico(clienteApp1));
-		assertTrue(clienteApp1.getModo());
+		Manual nuevoModo = new Manual(clienteApp1);
+		
+		clienteApp1.setModo(nuevoModo);
+		assertEquals(nuevoModo, clienteApp1.getModo());
 	}
 
 	@Test
 	void testGetNumeroTelefono() {
-		fail("Not yet implemented");
+		assertEquals(celu1.getNumero(), clienteApp1.getNumeroTelefono());
 	}
 
 	@Test
