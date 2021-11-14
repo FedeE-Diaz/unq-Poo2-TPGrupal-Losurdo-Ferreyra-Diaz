@@ -11,6 +11,7 @@ class PuntoDeVentaTest {
 	private Zona zona1;
 	private App appUsuario;
 	private Celular celularUsuario;
+	private int numeroDeUsuarioInexistente;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -19,6 +20,7 @@ class PuntoDeVentaTest {
 		this.puntoDeVenta = new PuntoDeVenta(this.sem, this.zona1);
 		this.celularUsuario = new Celular(1234);
 		this.appUsuario = new App(this.sem, "def-303", this.celularUsuario);
+		this.numeroDeUsuarioInexistente = 4321;
 	}
 
 	@Test
@@ -38,11 +40,14 @@ class PuntoDeVentaTest {
 		assertEquals(this.appUsuario.saldoDisponible(), creditoEsperado);
 	}
 
-	
-
 	@Test
-	void testCargarCredito() {
-		fail("Not yet implemented");
+	void testCuandoUnPuntoDeVentaCargaCreditoParaUnNumeroQueNoTieneUsuarioSeGeneraUnNuevousuario() {
+		Usuario usuarioInexistentePreviaCarga = this.sem.getUsuario(this.numeroDeUsuarioInexistente);
+		
+		this.puntoDeVenta.cargarCredito(numeroDeUsuarioInexistente, 80);
+		
+		assertFalse(usuarioInexistentePreviaCarga == this.sem.getUsuario(numeroDeUsuarioInexistente));
+
 	}
 
 }
