@@ -14,7 +14,7 @@ public class SEM implements Temporizador{
 		
 		public SEM() {
 			super();
-			this.gestionUsuario = new SEMGestionUsuario(this);
+			this.gestionUsuario = new SEMGestionUsuario();
 			this.gestionInfraccion = new SEMGestionInfraccion();
 			this.gestionEstacionamiento = new SEMGestionEstacionamiento(this);
 			this.gestionZona = new SEMGestionZona();
@@ -86,6 +86,9 @@ public class SEM implements Temporizador{
 		}
 		public Usuario getUsuario(int numero) {
 			return this.getMyGestionUsuario().getUsuarioDe(numero);
+		}
+		public int getHoraSistema() {
+			return this.reloj.getHoraActual();
 		}
 		@Override
 		public void actualizarReloj() {
