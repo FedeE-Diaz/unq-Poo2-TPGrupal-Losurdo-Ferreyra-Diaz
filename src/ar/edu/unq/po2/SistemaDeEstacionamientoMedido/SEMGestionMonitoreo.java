@@ -15,4 +15,10 @@ public class SEMGestionMonitoreo {
 		public void deSubscribirse(Entidad entidad) {
 			this.getSubscriptores().remove(entidad);
 		}
+		
+		public void notificarSubscriptores() {
+			for(Entidad subscriptor : this.subscriptores) {
+				subscriptor.notificar(new AvisoGenerico())
+			}
+		}
 }
