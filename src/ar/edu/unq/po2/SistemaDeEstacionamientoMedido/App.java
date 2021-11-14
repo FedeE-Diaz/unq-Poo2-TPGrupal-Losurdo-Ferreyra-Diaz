@@ -3,6 +3,13 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 public class App implements MovementSensor{
 
 	private String patente; 
+	
+	/* Por lo que entiendo, solo habrá un estacionamiento app a la vez, en caso de que hubiera mas de uno,
+	 *  habria que modificar ciertos metodos para contemplar esos casos, pero bueno, no se pidio evaluar esa situacion,
+	 *  por lo cual como dijeron en las clases, hay que evitar programar cosas de más y resolver problemas sobre situaciones 
+	 *  que no nos pidieron (que si se lo resolvemos gratis luego no nos contratan de nuevo 
+	 *  para resolver ese problema jeje) - Braian */
+	
 	private Modo modo; //Me parecio una buena idea aplicar un State para el modo automatico/manual.
 	private Celular celular;
 	private SEM sem;
@@ -26,20 +33,32 @@ public class App implements MovementSensor{
 	public void setModo(Modo modo) {
 		this.modo = modo;
 	}
+	
+	public Modo getModo() {
+		return modo;
+	}
+
+	public Celular getCelular() {
+		return celular;
+	}
+
 	public int getNumeroTelefono() {
 		return celular.getNumero();
 	}
+	
 
-	public App(String patente, Celular celular) {
+	public App(SEM sem,String patente, Celular celular) {
 		super();
+		
+		this.sem = sem;
 		this.patente = patente;
-		this.modo = new Manual(this); // ver en los test si esto funciona bien
+		this.modo = new Manual(this); // TODO: ver en los test si esto funciona bien
 		this.celular = celular;
 		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
 	}
 	
 	public void cambiarModo() {
-		modo.cambiarModo();
+		this.getModo().cambiarModo();
 	}
 	
 
@@ -53,26 +72,52 @@ public class App implements MovementSensor{
 	
 	public void iniciarEstacionamiento(String patente) {
 		
-		modo.iniciarEstacionamiento(patente); //despues vemos si con parametros o algo(quiza reciba ya una patente guardad para el automatico)
+		this.getModo().iniciarEstacionamiento(patente);
 	}
+	public void finalizarEstacionamiento(String patente) {
+		
+		this.getSem().finEstacionamiento(patente);
+		//this.getModo().finalizarEstacionamiento(patente);
+	}
+	
 	
 	//En automatico: las alertas inician estacionamientos y finalizan automaticamente.
 	//En manual: solo avisa
 	
 	public void driving() {
-		//TODO: completar - REVISAR ASISTENCIA AL USUARIO
-		modo.asistenciaFinEstacionamiento();
+		
+		this.getModo().asistenciaFinEstacionamiento();
 	}
 	
 	public void walking() {
-		//TODO: completar - REVISAR ASISTENCIA AL USUARIO
-		modo.asistenciaInicioEstacionamiento();
+		
+		this.getModo().asistenciaInicioEstacionamiento();
 	}
 
 	public Zona getZonaActual() {
 
-		return sem.obtenerZonaDe(celular.getGPS());
+		return sem.obtenerZonaDe(this.obtenerUbicacionActual());
 	}
+	private Punto obtenerUbicacionActual() {
+		return celular.getGPS().getUbicacionActual();
+	}
+
+	public boolean hayEstacionamientoVigente() {
+
+		return sem.esEstacionamientoVigente(this.getPatente());
+	}
+
+	public boolean estoyEnElMismoPuntoQueElEstacionamiento() {
+		//Para utilizar este metodo se debe utilizar en un short-circuit que determine previamente que dicho estacionamiento existe.
+		return this.obtenerUbicacionActual() == sem.getEstacionamientoDe(this.getPatente()).getUbicacion();
+	}
+
+	public boolean estoyEnUnaZonaDeEstacionamientoMedido() {
+
+		return sem.obtenerZonaDe(this.obtenerUbicacionActual()) != null;
+	}
+
+
 
 }
 /* Asistencia al usuario: En el primer caso los usuarios reciben multas por una omisión involuntaria, mientras que

@@ -6,9 +6,13 @@ public interface Modo {
 	
 	public ArrayList<String> iniciarEstacionamiento(String patente);
 	
-	public void cambiarModo();
+	public void finalizarEstacionamiento(String patente);
 	
-	public void asistenciaInicioEstacionamiento();
+	public ArrayList<String> asistenciaInicioEstacionamiento();
+	
+	public ArrayList<String> asistenciaFinEstacionamiento();
+	
+	public void cambiarModo();
 
-	public void asistenciaFinEstacionamiento();
+	
 }

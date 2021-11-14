@@ -5,35 +5,50 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 class AppTest {
+	
+	private SEM sem;
+	private App clienteApp1;
+	private App clienteApp2;
+	private Celular celu1;
+	private Celular celu2;
 
 	@BeforeEach
 	void setUp() throws Exception {
+		sem = new SEM();
+		celu1 = new Celular(1120132014);
+		celu2 = new Celular(1120162020);
+		clienteApp1 = new App(sem, "M3M0RY-13", celu1);
+		clienteApp1 = new App(sem, "R3MXR0SW41D",celu2);
 	}
-
 	@Test
 	void testGetUsuario() {
-		fail("Not yet implemented");
+		assertTrue(sem.getMyGestionUsuario().getListaDeUsuarios().contains(clienteApp1.getUsuario()));
+		assertEquals(celu1.getNumero(), clienteApp1.getUsuario().getNumTelefonoAsociado());
 	}
 
 	@Test
 	void testGetPatente() {
-		fail("Not yet implemented");
+		assertEquals("M3M0RY-13", clienteApp1.getPatente());
 	}
 
 	@Test
 	void testGetSem() {
-		fail("Not yet implemented");
+		assertEquals(sem, clienteApp1.getSem());
 	}
 
 	@Test
 	void testSetPatente() {
-		fail("Not yet implemented");
+		assertEquals("M3M0RY-13", clienteApp1.getPatente());
+		clienteApp1.setPatente("M3M3NT0M0R1");
+		assertEquals("M3M3NT0M0R1", clienteApp1.getPatente());
 	}
 
 	@Test
 	void testSetModo() {
-		fail("Not yet implemented");
+		clienteApp1.setModo(new Automatico(clienteApp1));
+		assertTrue(clienteApp1.getModo());
 	}
 
 	@Test
@@ -67,6 +82,11 @@ class AppTest {
 	}
 
 	@Test
+	void testFinalizarEstacionamiento() {
+		fail("Not yet implemented");
+	}
+
+	@Test
 	void testDriving() {
 		fail("Not yet implemented");
 	}
@@ -78,6 +98,21 @@ class AppTest {
 
 	@Test
 	void testGetZonaActual() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testHayEstacionamientoVigente() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testEstoyEnElMismoPuntoQueElEstacionamiento() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testEstoyEnUnaZonaDeEstacionamientoMedido() {
 		fail("Not yet implemented");
 	}
 
