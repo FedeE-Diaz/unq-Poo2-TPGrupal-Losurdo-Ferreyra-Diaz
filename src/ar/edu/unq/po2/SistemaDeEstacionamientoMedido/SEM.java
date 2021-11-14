@@ -14,7 +14,7 @@ public class SEM implements Temporizador{
 		
 		public SEM() {
 			super();
-			this.gestionUsuario = new SEMGestionUsuario(this);
+			this.gestionUsuario = new SEMGestionUsuario();
 			this.gestionInfraccion = new SEMGestionInfraccion();
 			this.gestionEstacionamiento = new SEMGestionEstacionamiento(this);
 			this.gestionZona = new SEMGestionZona();

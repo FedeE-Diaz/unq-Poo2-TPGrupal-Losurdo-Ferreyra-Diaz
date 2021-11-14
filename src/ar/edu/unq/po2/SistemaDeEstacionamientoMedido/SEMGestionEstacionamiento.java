@@ -22,6 +22,9 @@ public class SEMGestionEstacionamiento{
 
 	}
 	
+	public SEMGestionApp getGestionApp() {
+		return gestionApp;
+	}
 
 	public int getPrecioEstacionamientoPorHora() {
 		return precioEstacionamiento;
@@ -59,7 +62,7 @@ public class SEMGestionEstacionamiento{
 		
 	}
 	public ArrayList<String> iniciarNuevoEstacionamiento(App app) {
-		return gestionApp.iniciarNuevoEstacionamiento(app);
+		return this.getGestionApp().iniciarNuevoEstacionamiento(app);
 	}
 
 	public void actualizarEstadoEstacionamiento() {
