@@ -21,10 +21,6 @@ public class Temporizador {
 		this.listeners.add(listener);
 	}
 	
-	public void eliminarListener(TemporizadorListener listener) {
-		this.listeners.remove(listener);
-	}
-	
 	public void simularTiempo(long minutos) {
 		this.setUltimaHoraRegistrada(this.ultimaHoraRegistrada.plus(Duration.of(minutos, ChronoUnit.MINUTES))); 
 		this.update();

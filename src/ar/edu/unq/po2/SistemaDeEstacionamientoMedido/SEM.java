@@ -2,7 +2,7 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.util.ArrayList;
 
-public class SEM {
+public class SEM implements RelojListener {
 		
 		private SEMGestionUsuario gestionUsuario;
 		private SEMGestionInfraccion gestionInfraccion;
@@ -23,6 +23,7 @@ public class SEM {
 			this.gestionMonitoreo = new SEMGestionMonitoreo();
 			this.reloj = new Reloj();
 			this.temporizador = new Temporizador();
+			this.subscribirseReloj(reloj);
 			reloj.subscribirse(this.temporizador);
 		}
 		public SEMGestionUsuario getMyGestionUsuario() {
@@ -97,6 +98,10 @@ public class SEM {
 		}
 		public void suscribir(Entidad entidad) {
 			this.gestionMonitoreo.subscribirse(entidad);
+		}
+		@Override
+		public void subscribirseReloj(Reloj reloj) {
+			reloj.subscribirListener(this);
 		}
 		@Override
 		public void actualizarReloj() {
