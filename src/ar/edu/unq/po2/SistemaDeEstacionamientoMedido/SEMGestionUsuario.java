@@ -59,12 +59,10 @@ public class SEMGestionUsuario {
 	private void agregarUsuario(Usuario usuario) {
 		this.getListaDeUsuarios().add(usuario);
 	}
-	private void removerUsuario(Usuario usuario) {
-		this.getListaDeUsuarios().remove(usuario);
-	}
 
 	public void descontarCredito(int precio, int numTelefono) {
 		this.getUsuarioDe(numTelefono).restarCredito(precio);
 		
 	}
+	
 }
