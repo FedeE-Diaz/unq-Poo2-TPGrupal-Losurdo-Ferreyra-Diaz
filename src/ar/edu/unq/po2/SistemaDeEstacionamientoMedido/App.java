@@ -107,7 +107,7 @@ public class App implements MovementSensor{
 	}
 
 	public boolean estoyEnElMismoPuntoQueElEstacionamiento() {
-
+		//Para utilizar este metodo se debe utilizar en un short-circuit que determine previamente que dicho estacionamiento existe.
 		return this.obtenerUbicacionActual() == sem.getEstacionamientoDe(this.getPatente()).getUbicacion();
 	}
 
