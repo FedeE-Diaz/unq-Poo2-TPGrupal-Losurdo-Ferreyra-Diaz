@@ -12,6 +12,7 @@ class PuntoDeVentaTest {
 	private App appUsuario;
 	private Celular celularUsuario;
 	private int numeroDeUsuarioInexistente;
+	private Entidad entidad;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -22,6 +23,7 @@ class PuntoDeVentaTest {
 		this.celularUsuario = new Celular(1234);
 		this.appUsuario = new App(this.sem, "def-303", this.celularUsuario);
 		this.numeroDeUsuarioInexistente = 4321;
+		this.entidad = new Entidad();
 	}
 
 	@Test
@@ -59,5 +61,22 @@ class PuntoDeVentaTest {
 		assertFalse(sem.esEstacionamientoVigente("ABC123"));
 		assertEquals(sem.getMyEstacionamiento().getEstacionamientosActuales().size(), cantidadEstacionamientosEsperados); // Se comprueba que el SEM no hace nada ante eso
 	}
-
+	
+	@Test 
+	void cuandoUnaEntidadSeSubscribeAlSemYSeIniciaUnEstacionamientoRecibeUnAvisoConElNuevoEstacionamiento(){
+		this.entidad.suscribirseEn(sem);
+		this.puntoDeVenta.iniciarEstacionamiento("abc-203", 3);
+		
+		assertEquals(1, entidad.getAvisosRecibidos().size());
+	}
+	
+	@Test 
+	void cuandoUnaEntidadSeDesusribeDeUnSemDejaDeRecibirNuevosAvisos(){
+		this.entidad.suscribirseEn(sem);
+		this.puntoDeVenta.iniciarEstacionamiento("abc-203", 3);
+		this.entidad.desuscribirseEn(sem);
+		this.puntoDeVenta.iniciarEstacionamiento("bca-302", 1);
+		
+		assertEquals(1, entidad.getAvisosRecibidos().size());
+	}
 }

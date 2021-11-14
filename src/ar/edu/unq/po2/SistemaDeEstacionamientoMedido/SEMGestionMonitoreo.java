@@ -6,13 +6,16 @@ public class SEMGestionMonitoreo {
 
 		private ArrayList<Entidad> subscriptores;
 		
+		public SEMGestionMonitoreo() {
+			this.subscriptores = new ArrayList<Entidad>();
+		}
 		public ArrayList<Entidad> getSubscriptores() {
 			return subscriptores;
 		}
 		public void subscribirse(Entidad entidad) {
 			this.getSubscriptores().add(entidad);
 		}
-		public void deSubscribirse(Entidad entidad) {
+		public void deSubscribir(Entidad entidad) {
 			this.getSubscriptores().remove(entidad);
 		}
 		

@@ -109,5 +109,9 @@ public class SEM implements Temporizador{
 		public void notificar(AvisoGenerico aviso) {
 			this.gestionMonitoreo.notificarSubscriptores(aviso);
 		}
+		public void desuscribir(Entidad entidad) {
+			this.gestionMonitoreo.deSubscribir(entidad);
+			
+		}
 }
 
