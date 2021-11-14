@@ -22,7 +22,9 @@ public class SEMGestionZona {
 			}
 		}
 		return null;
-	} 
-	
+	}  
+	public void agregarZona(Zona zona) {
+		this.getZonas().add(zona);
+	}
 	
 }
