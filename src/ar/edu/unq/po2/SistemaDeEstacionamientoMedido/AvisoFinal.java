@@ -1,13 +1,13 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
-public class AvisoInicio implements AvisoGenerico {
+public class AvisoFinal implements AvisoGenerico {
 	 private EstacionamientoVigente estacionamiento;
 	 
-	 public AvisoInicio(EstacionamientoVigente estacionamiento) {
+	 public AvisoFinal(EstacionamientoVigente estacionamiento) {
 		 this.estacionamiento = estacionamiento;
 	 }
 	 
-	 public AvisoInicio aviso() {
+	 public AvisoFinal aviso() {
 		 return this;
 	 }
 }

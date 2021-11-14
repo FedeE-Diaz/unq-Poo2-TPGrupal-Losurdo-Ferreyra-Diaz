@@ -3,10 +3,10 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 import java.util.ArrayList;
 
 public class Entidad {
-	private ArrayList<String> avisosRecibidos;
+	private ArrayList<AvisoGenerico> avisosRecibidos;
 	
 	public Entidad() {
-		this.avisosRecibidos = new ArrayList<String>();
+		this.avisosRecibidos = new ArrayList<AvisoGenerico>();
 	}
 	public void suscribirseEn(SEM sem) {
 		sem.suscribir(this);

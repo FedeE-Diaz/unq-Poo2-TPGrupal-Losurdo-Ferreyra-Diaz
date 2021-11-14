@@ -51,10 +51,12 @@ public class SEMGestionEstacionamiento{
 	public void agregarNuevoEstacionamiento(EstacionamientoVigente estacionamiento) {
 		this.getEstacionamientosActuales().add(estacionamiento);
 		estacionamiento.actualizar(this.sem.getHoraSistema(),this);
+		this.sem.notificar(new AvisoInicio(estacionamiento));
 	}
 
 	public void finEstacionamiento(String patente) throws Exception{
-		if(this.esEstacionamientoVigente(patente)){		
+		if(this.esEstacionamientoVigente(patente)){	
+			this.sem.notificar(new AvisoFinal(this.getEstacionamientoDe(patente)));
 			this.removerEstacionamientoVigente(this.getEstacionamientoDe(patente));
 		}
 	}
