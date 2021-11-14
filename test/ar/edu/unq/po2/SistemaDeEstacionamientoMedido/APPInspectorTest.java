@@ -20,12 +20,7 @@ class APPInspectorTest {
 		this.celular      = new Celular(123123);
 		this.zona         = new Zona("Roberto");
 		this.appInspector = new APPInspector(this.sem, this.celular, this.zona);
-		
-		Punto punto = new Punto();
-		zona.agregarPunto(punto); // todos los puntos son iguales, es decir, el punto de la zona asignada al inspector será el mismo donde está
-			                      // el inspector actualmente, por lo que tendrá derecho a hacer la infracción
-		
-		
+			
 		this.estacionamiento = new EstacionamientoVigente("ABC123", 12, 14, this.zona);
 	}
 	
@@ -36,6 +31,9 @@ class APPInspectorTest {
 	
 	@Test
 	void cuandoUnaAPPInspectorPreguntaSiUnaPatenteEsEstacionamientoVigenteYLoEs_RecibeUnaRespuestaPositiva() {
+		Punto punto = new Punto();
+		zona.agregarPunto(punto); // se agrega a la Zona el Punto por defecto, el mismo donde está ubicado el Inspector
+		
 		sem.agregarNuevoEstacionamiento(estacionamiento);
 		
 		assertTrue(appInspector.esEstacionamientoVigente("ABC123"), "Error en es un estacionamiento vigente"); 
@@ -44,14 +42,31 @@ class APPInspectorTest {
 	
 	@Test
 	void cuandoUnaPatenteNoTieneUnEstacionamientoVigente_LaAppInspectorLeCargaUnaInfraccion() {		
+		Punto punto = new Punto();
+		zona.agregarPunto(punto); // se agrega a la Zona el Punto por defecto, el mismo donde está ubicado el Inspector
+		
 		appInspector.verificarPatente("34VCS"); // la patente 34VCS no tiene un estacionamiento vigente
 		
 		assertEquals(sem.getMyInfraccion().getCantidadDeInfracciones(), 1, "Error en cargar la infracción correspondiente"); //el inspector ha cargado la infracción
 		assertTrue(sem.getMyInfraccion().tieneUnaInfraccion("34VCS"));
 	}
 	
+	@Test 
+	void cuandoUnaPatenteNoTieneEstacionamientoVigente_PeroLaZonaNoLeCorrespondeAlInspector_NoSeCargaLaInfraccion() {
+		Punto punto = new Punto(10, 20); 
+		zona.agregarPunto(punto);    // Se agrega a la Zona un punto con coordenadas que no pertenecen a la que el Inspector está parado (según el GPS de su celular)
+		
+		appInspector.verificarPatente("34VCS");
+		
+		assertEquals(sem.getMyInfraccion().getCantidadDeInfracciones(), 0); // La patente 34VCS no tiene Estacionamiento Vigente, pero el Inspector no puede cargar la infracción 
+		assertFalse(sem.getMyInfraccion().tieneUnaInfraccion("34VCS"));     // No se cargó la infracción
+	}
+	
 	@Test
 	void cuandoUnaPatenteTieneUnEstacionamientoVigente_LaAppInspectorNoLeCargaUnaInfraccion() {
+		Punto punto = new Punto();
+		zona.agregarPunto(punto); // se agrega a la Zona el Punto por defecto, el mismo donde está ubicado el Inspector
+		
 		sem.agregarNuevoEstacionamiento(estacionamiento);
 		
 		appInspector.verificarPatente("ABC123"); //ABC123 es una patente que tiene un estacionamiento en la zona de inspección del inspector
