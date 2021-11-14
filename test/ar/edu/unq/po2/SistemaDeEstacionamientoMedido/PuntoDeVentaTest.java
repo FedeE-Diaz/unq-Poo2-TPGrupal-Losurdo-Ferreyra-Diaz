@@ -17,6 +17,7 @@ class PuntoDeVentaTest {
 	void setUp() throws Exception {
 		this.sem = new SEM();
 		this.zona1 = new Zona("Pepe");
+		this.sem.agregarZona(zona1);
 		this.puntoDeVenta = new PuntoDeVenta(this.sem, this.zona1);
 		this.celularUsuario = new Celular(1234);
 		this.appUsuario = new App(this.sem, "def-303", this.celularUsuario);

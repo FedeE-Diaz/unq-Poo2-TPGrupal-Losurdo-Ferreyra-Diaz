@@ -20,7 +20,7 @@ public class EstacionamientoApp extends EstacionamientoVigente {
 	}
 	
 	public boolean correspondeCobrar(int horaActual) {
-		return this.horasCobradas < this.horasTranscurridas(horaActual);
+		return this.horasCobradas <= this.horasTranscurridas(horaActual);
 	}
 	private int horasTranscurridas(int horaActual) {
 		return horaActual - this.getHoraInicial();
