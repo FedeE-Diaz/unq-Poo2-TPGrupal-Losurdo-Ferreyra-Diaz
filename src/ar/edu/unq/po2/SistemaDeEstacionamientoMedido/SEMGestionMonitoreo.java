@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class SEMGestionMonitoreo {
 
-		private ArrayList<AvisoGenerico> subscriptores;
+		private ArrayList<Entidad> subscriptores;
 		
-		public ArrayList<AvisoGenerico> getSubscriptores() {
+		public ArrayList<Entidad> getSubscriptores() {
 			return subscriptores;
 		}
-		public void subscribirse(AvisoGenerico avisado) {
-			this.getSubscriptores().add(avisado);
+		public void subscribirse(Entidad entidad) {
+			this.getSubscriptores().add(entidad);
 		}
-		public void deSubscribirse(AvisoGenerico avisado) {
-			this.getSubscriptores().remove(avisado);
+		public void deSubscribirse(Entidad entidad) {
+			this.getSubscriptores().remove(entidad);
 		}
 }
