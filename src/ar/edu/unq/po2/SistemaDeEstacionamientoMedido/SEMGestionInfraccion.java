@@ -21,11 +21,11 @@ public class SEMGestionInfraccion {
 	
 	public void cargarInfraccion(String patente, Zona zona) {
 		Infraccion nuevaInfraccion = new Infraccion(patente, zona);
-		this.infracciones.add(nuevaInfraccion);		
+		this.getInfracciones().add(nuevaInfraccion);		
 	}
 	
 	public boolean tieneUnaInfraccion(String patente) {
-		for(Infraccion infraccion : this.infracciones) {
+		for(Infraccion infraccion : this.getInfracciones()) {
 			if(infraccion.getPatente() == patente) {
 				return true;
 			}

@@ -39,6 +39,7 @@ class APPInspectorTest {
 		sem.agregarNuevoEstacionamiento(estacionamiento);
 		
 		assertTrue(appInspector.esEstacionamientoVigente("ABC123"), "Error en es un estacionamiento vigente"); 
+		assertFalse(sem.getMyInfraccion().tieneUnaInfraccion("ABC123"));
 	}
 	
 	@Test
@@ -46,6 +47,7 @@ class APPInspectorTest {
 		appInspector.verificarPatente("34VCS"); // la patente 34VCS no tiene un estacionamiento vigente
 		
 		assertEquals(sem.getMyInfraccion().getCantidadDeInfracciones(), 1, "Error en cargar la infracción correspondiente"); //el inspector ha cargado la infracción
+		assertTrue(sem.getMyInfraccion().tieneUnaInfraccion("34VCS"));
 	}
 	
 	@Test
@@ -55,5 +57,6 @@ class APPInspectorTest {
 		appInspector.verificarPatente("ABC123"); //ABC123 es una patente que tiene un estacionamiento en la zona de inspección del inspector
 		
 		assertEquals(sem.getMyInfraccion().getCantidadDeInfracciones(), 0); //el inspector no ha cargado la infracción
+		assertFalse(sem.getMyInfraccion().tieneUnaInfraccion("ABC123"));
 	}
 }
