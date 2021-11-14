@@ -2,19 +2,18 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.time.LocalDateTime;
 
-public class RegistroDeRecarga {
+public class RegistroDeRecarga extends Registro {
 
-	private int numeroControl;
-	private PuntoDeVenta puntoDeVenta;
-	private LocalDateTime fechaYHora;
-	private int numeroTelefono;
+	// Esta clase actúa como Data Class ya que es la representación de un registro fisico
+	
 	private int credito;
+	private int numeroTelefono;
 
 	public RegistroDeRecarga(int numeroControl, PuntoDeVenta puntoDeVenta, LocalDateTime fechaYHora, int numTelefono,
 			int credito) {
-		this.numeroControl = numeroControl;
-		this.puntoDeVenta  = puntoDeVenta;
-		this.fechaYHora    = fechaYHora;
+		super.numeroDeControl = numeroControl;
+		super.puntoDeVenta  = puntoDeVenta;
+		super.fechaYHora    = fechaYHora;
 		this.numeroTelefono = numTelefono;
 		this.credito = credito;
 	}
