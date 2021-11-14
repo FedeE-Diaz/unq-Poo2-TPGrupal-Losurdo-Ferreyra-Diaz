@@ -69,8 +69,15 @@ public class SEM implements Temporizador{
 			this.getMyEstacionamiento().agregarNuevoEstacionamiento(estacionamiento);
 		}
 		public void cargarCredito(int numTelefono, int credito, PuntoDeVenta puntoDeVenta) {
-			this.getMyGestionUsuario().cargarCredito(numTelefono,credito,puntoDeVenta);
+			this.getMyGestionUsuario().cargarCredito(numTelefono,credito);
+			this.registarCompraCredito(numTelefono, credito, puntoDeVenta);
 		} 
+		private void registarCompraCredito(int numTelefono, int credito, PuntoDeVenta puntoDeVenta) {
+			this.getMyRegistro().registrarCompraCredito(numTelefono, credito, puntoDeVenta);			
+		}
+		public void agregarZona(Zona zona) {
+            this.getMyZona().agregarZona(zona);
+        }
 		public void cargarInfraccion(String patente, Zona zona) {
 			this.getMyInfraccion().cargarInfraccion(patente, zona);
 		}
