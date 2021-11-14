@@ -86,6 +86,7 @@ class AppTest {
 		clienteApp1.cambiarModo();
 		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
 		respuestaEsperada2.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
+		respuestaEsperada2.add("Saldo insuficiente. Estacionamiento no permitido.");
 		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaInicioEstacionamiento());
 		
 		
@@ -98,37 +99,67 @@ class AppTest {
 		
 	}
 	
-/*
+
 	@Test
 	void testConsultarSaldoDisponible() {
-		fail("Not yet implemented");
+		assertEquals("Su saldo disponible es: 0", clienteApp1.consultarSaldoDisponible());
 	}
 
 	@Test
 	void testSaldoDisponible() {
-		fail("Not yet implemented");
+		assertEquals(0, clienteApp1.saldoDisponible());
 	}
 
 	@Test
-	void testIniciarEstacionamiento() {
-		fail("Not yet implemented");
+	void testIniciarEstacionamientoAuto() {
+		clienteApp1.cambiarModo();
+		ArrayList<String> respuestaEsperada = new ArrayList<String>();
+		respuestaEsperada.add("Saldo insuficiente. Estacionamiento no permitido.");
+		assertEquals(respuestaEsperada, clienteApp1.iniciarEstacionamiento(clienteApp1.getPatente()));
 	}
+	
+	@Test
+	void testIniciarEstacionamientoManual() {
+		ArrayList<String> respuestaEsperada = new ArrayList<String>();
+		respuestaEsperada.add("Saldo insuficiente. Estacionamiento no permitido.");
+		assertEquals(respuestaEsperada, clienteApp1.iniciarEstacionamiento("IW4NTSL33P"));
+		assertEquals("IW4NTSL33P", clienteApp1.getPatente()); // Aun si no se puede hacer el estacionamiento,se cambiará la patente
+	}														 // ¿Pero nos interesa que vuelva a la patente de antes?
 
 	@Test
 	void testFinalizarEstacionamiento() {
-		fail("Not yet implemented");
+		clienteApp1.getUsuario().sumarCredito(40);
+		clienteApp1.iniciarEstacionamiento(clienteApp1.getPatente());
+		assertTrue(clienteApp1.hayEstacionamientoVigente());
+		clienteApp1.finalizarEstacionamiento(clienteApp1.getPatente());
+		assertFalse(clienteApp1.hayEstacionamientoVigente());
 	}
-
+	
 	@Test
 	void testDriving() {
-		fail("Not yet implemented");
-	}
-
+		clienteApp2.cambiarModo();
+		clienteApp2.agregarSubscriptor(consola);
+		clienteApp2.getUsuario().sumarCredito(40);
+		clienteApp2.iniciarEstacionamiento(clienteApp2.getPatente());
+		clienteApp2.driving();
+		}
+/*
 	@Test
-	void testWalking() {
-		fail("Not yet implemented");
+	void testDrivingCaso2() {
+		//TODO caso que falta
 	}
-
+*/
+	@Test
+	void testWalkingIrseSinHaberHechoEstacionamiento() {
+		clienteApp2.agregarSubscriptor(consola);
+		clienteApp2.getUsuario().sumarCredito(40);
+		clienteApp2.walking();
+	}
+	@Test
+	void testWalkingSinRespuesta() {
+		//TODO sin respuesta porque la condicion para dar el aviso no fue cumplida
+	}
+	/*
 	@Test
 	void testGetZonaActual() {
 		fail("Not yet implemented");

@@ -62,7 +62,7 @@ public class SEMGestionApp {
 		return sem.getReloj().getHoraActual() + this.calculoHorasDisponibles(app); 
 		// Esto habra que cambiarlo si llegamos a usar dates y todo eso.
 	}
-	private int calculoHorasDisponibles(App app) {
-		return (int) app.saldoDisponible() / semEstacionamiento.getPrecioEstacionamientoPorHora();
+	public int calculoHorasDisponibles(App app) {
+		return app.saldoDisponible() / semEstacionamiento.getPrecioEstacionamientoPorHora();
 	}
 }

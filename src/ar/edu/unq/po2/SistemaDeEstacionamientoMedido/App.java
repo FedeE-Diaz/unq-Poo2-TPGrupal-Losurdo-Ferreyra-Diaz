@@ -77,14 +77,13 @@ public class App implements MovementSensor{
 		return this.getUsuario().getCredito();
 	}
 	
-	public void iniciarEstacionamiento(String patente) {
+	public ArrayList<String> iniciarEstacionamiento(String patente) {
 		
-		this.getModo().iniciarEstacionamiento(patente);
+		return this.getModo().iniciarEstacionamiento(patente);
 	}
 	public void finalizarEstacionamiento(String patente) {
 		
-		this.getSem().finEstacionamiento(patente);
-		//this.getModo().finalizarEstacionamiento(patente);
+		this.getModo().finalizarEstacionamiento(patente);
 	}
 	
 	
@@ -124,7 +123,7 @@ public class App implements MovementSensor{
 
 	public boolean estoyEnElMismoPuntoQueElEstacionamiento() {
 		//Para utilizar este metodo se debe utilizar en un short-circuit que determine previamente que dicho estacionamiento existe.
-		return this.obtenerUbicacionActual() == sem.getEstacionamientoDe(this.getPatente()).getUbicacion();
+		return this.obtenerUbicacionActual().esMismoPunto(sem.getEstacionamientoDe(this.getPatente()).getUbicacion());
 	}
 
 	public boolean estoyEnUnaZonaDeEstacionamientoMedido() {

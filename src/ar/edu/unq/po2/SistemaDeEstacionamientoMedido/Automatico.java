@@ -15,10 +15,8 @@ public class Automatico extends ModoActivo{
 	protected ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento() {
 		ArrayList<String> respuesta = new ArrayList<String>();
 		respuesta.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
-		this.iniciarEstacionamiento(this.getApp().getPatente()); 
-		/* El ejercicio no lo aclara pero si quiero adicionalmente al mensaje del aviso,sumarle los
-		 *  mensajes anteriores "comunes" al iniciar estacionamiento, deberia hacer una concatenacion
-		 *   de "respuesta" con "iniciarEstacionamiento". */
+		respuesta.addAll(this.iniciarEstacionamiento(this.getApp().getPatente())); 
+		/* El ejercicio no lo aclara pero me parece buena idea iniciar el mensaje del intento de solicitud y luego el mensaje de si fue exitoso o no */
 		return respuesta;
 	}
 

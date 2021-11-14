@@ -26,7 +26,8 @@ public abstract class ModoActivo implements Modo{
 	
 	@Override
 	public void finalizarEstacionamiento(String patente) {
-		this.getApp().finalizarEstacionamiento(patente);
+		
+		this.getApp().getSem().finEstacionamiento(patente);
 	}
 
 	/* Estas advertencias que se dan por un posible inicio/fin de estacionamiento, se activan 
@@ -47,7 +48,7 @@ public abstract class ModoActivo implements Modo{
 	}
 	@Override
 	public ArrayList<String> asistenciaFinEstacionamiento() {
-		if(this.getApp().hayEstacionamientoVigente() && this.getApp().estoyEnElMismoPuntoQueElEstacionamiento()) { //Pequeño short circuit
+		if(this.getApp().hayEstacionamientoVigente() && this.getApp().estoyEnElMismoPuntoQueElEstacionamiento()) { 
 			return this.notificarAdvertenciaSobreFinEstacionamiento();
 		}
 		else {
