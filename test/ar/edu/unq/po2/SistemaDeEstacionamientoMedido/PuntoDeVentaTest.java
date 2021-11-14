@@ -33,9 +33,7 @@ class PuntoDeVentaTest {
 		int cantidadASumar = 80;
 		int creditoEsperado = appUsuario.saldoDisponible() + cantidadASumar;
 		
-		
-		
-		assertTrue()
+		assertEquals(this.appUsuario.saldoDisponible(), creditoEsperado);
 	}
 
 	@Test

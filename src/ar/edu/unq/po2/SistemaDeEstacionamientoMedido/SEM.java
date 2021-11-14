@@ -75,7 +75,6 @@ public class SEM implements Temporizador{
 			this.getMyInfraccion().cargarInfraccion(patente, zona);
 		}
 		public Zona obtenerZonaDe(Punto punto) {
-			//TODO: implementar obtenerZonaDe en gestionZona
 			return this.getMyZona().obtenerZonaDe(punto); // Si el punto no existe en ninguna zona, entonces devuelve null
 		}
 		public Usuario getUsuario(int numero) {
