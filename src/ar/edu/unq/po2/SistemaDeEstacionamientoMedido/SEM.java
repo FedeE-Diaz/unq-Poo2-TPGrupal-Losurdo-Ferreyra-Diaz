@@ -106,5 +106,8 @@ public class SEM implements Temporizador{
 		public void cobrarA(int precio, int numTelefono) {
 			this.gestionUsuario.descontarCredito(precio, numTelefono);
 		}
+		public void notificar(AvisoGenerico aviso) {
+			this.gestionMonitoreo.notificarSubscriptores(aviso);
+		}
 }
 

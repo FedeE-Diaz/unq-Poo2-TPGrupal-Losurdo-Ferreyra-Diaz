@@ -28,7 +28,6 @@ public class SEMGestionApp {
 			
 			EstacionamientoVigente nuevoEstacionamiento = this.nuevoEstacionamientoApp(app.getPatente(), app);
 			semEstacionamiento.agregarNuevoEstacionamiento(nuevoEstacionamiento);
-			// TODO avisa a los subscriptores de gestionMonitor de que se creo un estacionamiento ( y verificar que haga lo mismo cuando finaliza)
 			return this.mensajeRespuestaDe(nuevoEstacionamiento);
 		}
 		else {
