@@ -33,14 +33,14 @@ public class SEMGestionEstacionamiento{
 		return this.getEstacionamientosActuales().stream().anyMatch(p -> p.esMismaPatente(patente));
 	}
 
-	public EstacionamientoVigente getEstacionamientoDe(String patente) {
+	public EstacionamientoVigente getEstacionamientoDe(String patente)throws Exception {
 		// El mensaje solo debe ser invocado después de verificar la existencia del estacionamientoVigente (en este caso mediante esEstacionamientoVigente)
 	    for (EstacionamientoVigente estacionamiento : this.getEstacionamientosActuales()) {
 	        if (estacionamiento.esMismaPatente(patente)) {
 	            return estacionamiento;
 	        }
 	    }
-	    return null;
+	    throw new Exception("Se busco un estacionamiento sin verificar su existencia");
 		
 	}
 
@@ -53,7 +53,7 @@ public class SEMGestionEstacionamiento{
 		this.getEstacionamientosActuales().add(estacionamiento); 
 	}
 
-	public void finEstacionamiento(String patente) {
+	public void finEstacionamiento(String patente) throws Exception{
 		//TODO Tirar error(mediante algun mensaje o algo) o salvarlo con if, si la patente dada no existe dentro de la lista de estacionamientoVigente.
 		if(this.esEstacionamientoVigente(patente)){
 			
@@ -69,6 +69,9 @@ public class SEMGestionEstacionamiento{
 		// TODO completar la parte de abajo comentada
 		
 		this.verificarFinalizacionDeTodosLosEstacionamientos();
+		for(EstacionamientoVigente estacionamiento : estacionamientosActuales) {
+			estacionamiento.actualizar(sem.getHoraSistema(), this);
+		}
 		/* Esto lo que hará es darle la orden a todos los estacionamientos(pero solo tendra efecto en el de la app)
 		 *  de revisar en cada uno de los estacionamientos vigentes, que si ya se completo una nueva hora desde que se inicio,
 		 *   se vuelva a cobrar otros 40 por el estacionamiento.
@@ -76,6 +79,9 @@ public class SEMGestionEstacionamiento{
 		// por cada estacionamiento -> estacionamiento.actualizarEstado() o algo asi (verá si es momento de cobrar dinero o no)
 	
 		
+	}
+	public void cobrarA(int numTelefono) {
+		this.sem.cobrarA(this.precioEstacionamiento, numTelefono);
 	}
 
 	private void verificarFinalizacionDeTodosLosEstacionamientos() {
@@ -87,7 +93,7 @@ public class SEMGestionEstacionamiento{
 
 	private boolean esHoraDeFinalizar() {
 		
-		return sem.getReloj().getHoraActual() >=20;
+		return sem.getHoraSistema() >=20;
 	}
 
 	public void finalizarTodosLosEstacionamientos() {

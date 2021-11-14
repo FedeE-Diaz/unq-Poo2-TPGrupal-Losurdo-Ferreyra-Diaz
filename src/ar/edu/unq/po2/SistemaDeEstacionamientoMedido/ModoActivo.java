@@ -25,7 +25,7 @@ public abstract class ModoActivo implements Modo{
 	protected void setearPatenteManualmente(String patente) {}
 	
 	@Override
-	public void finalizarEstacionamiento(String patente) {
+	public void finalizarEstacionamiento(String patente) throws Exception{
 		
 		this.getApp().getSem().finEstacionamiento(patente);
 	}
@@ -47,7 +47,7 @@ public abstract class ModoActivo implements Modo{
 		}				//Esto se podria reemplazar con un arrayList<String> vacio y que entonces si está vacio no haga ningun popUp...es lo mismo
 	}
 	@Override
-	public ArrayList<String> asistenciaFinEstacionamiento() {
+	public ArrayList<String> asistenciaFinEstacionamiento() throws Exception{
 		if(this.getApp().hayEstacionamientoVigente() && this.getApp().estoyEnElMismoPuntoQueElEstacionamiento()) { 
 			return this.notificarAdvertenciaSobreFinEstacionamiento();
 		}
@@ -58,7 +58,7 @@ public abstract class ModoActivo implements Modo{
 	
 	protected abstract ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento();
 	
-	protected abstract ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento();
+	protected abstract ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento() throws Exception;
 
 	@Override
 	public abstract void cambiarModo();

@@ -38,4 +38,9 @@ public class Usuario {
 	public boolean esMismoNumero(int numero) {
 		return this.getNumTelefonoAsociado() == numero;
 	}
+
+	public void restarCredito(int precio) {
+		this.setCredito(this.getCredito()-precio);
+		
+	}
 }

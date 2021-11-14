@@ -56,10 +56,10 @@ public class SEM implements Temporizador{
 		public boolean esEstacionamientoVigente(String patente) {
 			return this.getMyEstacionamiento().esEstacionamientoVigente(patente);	
 		}
-		public void finEstacionamiento(String patente) {
+		public void finEstacionamiento(String patente) throws Exception{
 			this.getMyEstacionamiento().finEstacionamiento(patente);
 		}
-		public EstacionamientoVigente getEstacionamientoDe(String patente) { 
+		public EstacionamientoVigente getEstacionamientoDe(String patente) throws Exception { 
 			return this.getMyEstacionamiento().getEstacionamientoDe(patente);
 		}
 		public void removerEstacionamientoVigente(EstacionamientoVigente estacionamiento) {
@@ -103,4 +103,8 @@ public class SEM implements Temporizador{
 		public void crearUsuarioDesdeApp(App app,int numTel) {
 			this.getMyGestionUsuario().crearUsuarioDesdeApp(app,numTel);
 		}
+		public void cobrarA(int precio, int numTelefono) {
+			this.gestionUsuario.descontarCredito(precio, numTelefono);
+		}
 }
+
