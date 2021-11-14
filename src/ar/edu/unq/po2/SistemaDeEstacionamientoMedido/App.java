@@ -76,7 +76,8 @@ public class App implements MovementSensor{
 	}
 	public void finalizarEstacionamiento(String patente) {
 		
-		this.getModo().finalizarEstacionamiento(patente);
+		this.getSem().finEstacionamiento(patente);
+		//this.getModo().finalizarEstacionamiento(patente);
 	}
 	
 	

@@ -25,7 +25,7 @@ public abstract class ModoActivo implements Modo{
 	
 	@Override
 	public void finalizarEstacionamiento(String patente) {
-		this.getApp().getSem().finEstacionamiento(patente);
+		this.getApp().finalizarEstacionamiento(patente);
 	}
 
 	/* Estas advertencias que se dan por un posible inicio/fin de estacionamiento, se activan 
