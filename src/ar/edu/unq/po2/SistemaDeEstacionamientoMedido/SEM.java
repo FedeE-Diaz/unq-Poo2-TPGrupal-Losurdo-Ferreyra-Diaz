@@ -59,10 +59,10 @@ public class SEM implements Temporizador{
 		public void finEstacionamiento(String patente) {
 			this.getMyEstacionamiento().finEstacionamiento(patente);
 		}
-		private EstacionamientoVigente getEstacionamientoDe(String patente) { 
+		public EstacionamientoVigente getEstacionamientoDe(String patente) { 
 			return this.getMyEstacionamiento().getEstacionamientoDe(patente);
 		}
-		private void removerEstacionamientoVigente(EstacionamientoVigente estacionamiento) {
+		public void removerEstacionamientoVigente(EstacionamientoVigente estacionamiento) {
 			this.getMyEstacionamiento().removerEstacionamientoVigente(estacionamiento);
 		}
 		public void agregarNuevoEstacionamiento(EstacionamientoVigente estacionamiento) {
@@ -74,8 +74,9 @@ public class SEM implements Temporizador{
 		public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
 			this.getMyInfraccion().cargarInfraccion(patente, inspector, zona);
 		}
-		public Zona obtenerZonaDe(GPS gps) {
-			return this.getMyZona().obtenerZonaDe(gps);
+		public Zona obtenerZonaDe(Punto punto) {
+			//TODO: implementar obtenerZonaDe en gestionZona
+			return this.getMyZona().obtenerZonaDe(punto); // Si el punto no existe en ninguna zona, entonces devuelve null
 		}
 		public Usuario getUsuario(int numero) {
 			return this.getMyGestionUsuario().getUsuarioDe(numero);

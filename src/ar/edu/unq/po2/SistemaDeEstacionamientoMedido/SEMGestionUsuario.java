@@ -6,7 +6,7 @@ public class SEMGestionUsuario {
 
 	private ArrayList<Usuario> listaDeUsuarios;
 
-	private ArrayList<Usuario> getListaDeUsuarios() {
+	public ArrayList<Usuario> getListaDeUsuarios() {
 		return listaDeUsuarios;
 	}
 

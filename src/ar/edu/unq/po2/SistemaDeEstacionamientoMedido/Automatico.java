@@ -2,45 +2,40 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.util.ArrayList;
 
-public class Automatico implements Modo {
+public class Automatico extends ModoActivo{
 
-	private final App app;
-	
-	private App getApp() {
-		return app;
-	}
 
-	public Automatico(App app) { //Considerar hacer una super clase y heredar de ella tanto para automatico como manual
-		super();
-		this.app = app;
-	}
 
-	@Override
-	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		return this.getApp().getSem().iniciarNuevoEstacionamiento(this.getApp());
+	public Automatico(App app) {
+		super(app);
 	}
 
 	// AVISA Y CREA/ELIMINA
 	@Override
-	public void asistenciaInicioEstacionamiento() {
-	// TODO Auto-generated method stub
-	
+	protected ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento() {
+		ArrayList<String> respuesta = new ArrayList<String>();
+		respuesta.add("Se ha iniciado una solicitud estacionamiento automaticamente");
+		this.iniciarEstacionamiento(this.getApp().getPatente()); 
+		/* El ejercicio no lo aclara pero si quiero adicionalmente al mensaje del aviso,sumarle los
+		 *  mensajes anteriores "comunes" al iniciar estacionamiento, deberia hacer una concatenacion
+		 *   de "respuesta" con "iniciarEstacionamiento". */
+		return respuesta;
 	}
 
 	@Override
-	public void asistenciaFinEstacionamiento() {
-	// TODO Auto-generated method stub
-	
+	protected ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento(){
+		ArrayList<String> respuesta = new ArrayList<String>();
+		respuesta.add("Se ha finalizado el estacionamiento actual automaticamente");
+		this.finalizarEstacionamiento(this.getApp().getPatente());
+		return respuesta;
 	}
-/*En estos casos, el
-usuario también recibe una notificación, ahora indicando que el inicio/fin de estacionamiento se ha
-realizado de forma automática.*/
 	
 	@Override
 	public void cambiarModo() {
 	
-	this.getApp().setModo(new Manual(app));
+	this.getApp().setModo(new Manual(this.getApp()));
 	
 	}
+
 
 }

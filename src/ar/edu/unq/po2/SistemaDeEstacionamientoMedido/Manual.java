@@ -2,50 +2,43 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.util.ArrayList;
 
-public class Manual implements Modo{
+public class Manual extends ModoActivo{
 	
-	
-	private final App app;
-	
-	private App getApp() {
-		return app;
-	}
+
 
 	public Manual(App app) {
-		super();
-		this.app = app;
+		super(app);
 	}
 
+	// SOLO AVISA
 	@Override
-	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		this.getApp().setPatente(patente);
-		return this.getApp().getSem().iniciarNuevoEstacionamiento(app);
+	protected ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento() {
+		ArrayList<String> respuesta = new ArrayList<String>();
+		respuesta.add("Alerta: Estas a punto de irte de tu auto sin haber realizado un estacionamiento");
+		return respuesta;
 	}
-
-
-// SOLO AVISA
-	@Override
-	public void asistenciaInicioEstacionamiento() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 
 	@Override
-	public void asistenciaFinEstacionamiento() {
-		// TODO Auto-generated method stub
-		
+	protected ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento() {
+		ArrayList<String> respuesta = new ArrayList<String>();
+		respuesta.add("Alerta: Hemos detectado que te estas a punto de ir sin haber finalizado el estacionamiento");
+		return respuesta;
 	}
-
 
 
 	@Override
 	public void cambiarModo() {
 
-		this.getApp().setModo(new Automatico(app));
+		this.getApp().setModo(new Automatico(this.getApp()));
 		
 	}
+	@Override
+	protected void setearPatenteManualmente(String patente) {
+		this.getApp().setPatente(patente);
+	}
+
+
 
 
 
