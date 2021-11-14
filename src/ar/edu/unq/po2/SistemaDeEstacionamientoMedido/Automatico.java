@@ -14,7 +14,7 @@ public class Automatico extends ModoActivo{
 	@Override
 	protected ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento() {
 		ArrayList<String> respuesta = new ArrayList<String>();
-		respuesta.add("Se ha iniciado una solicitud estacionamiento automaticamente");
+		respuesta.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
 		this.iniciarEstacionamiento(this.getApp().getPatente()); 
 		/* El ejercicio no lo aclara pero si quiero adicionalmente al mensaje del aviso,sumarle los
 		 *  mensajes anteriores "comunes" al iniciar estacionamiento, deberia hacer una concatenacion
