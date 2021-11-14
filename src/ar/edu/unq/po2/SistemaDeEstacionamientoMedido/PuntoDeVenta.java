@@ -20,7 +20,7 @@ public class PuntoDeVenta {
 	}
 	
 	public void cargarCredito(int numero, int monto) {
-		this.sem.cargarCredito(numero, monto);
+		this.sem.cargarCredito(numero, monto, this);
 	}
 	
 	
