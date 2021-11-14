@@ -15,8 +15,12 @@ public class SEMGestionInfraccion {
 		return infracciones;
 	}
 	
-	public void cargarInfraccion(String patente, Inspector inspector, Zona zona) {
-		Infraccion nuevaInfraccion = new Infraccion(patente, inspector, zona);
+	public int getCantidadDeInfracciones() {
+		return this.infracciones.size();
+	}
+	
+	public void cargarInfraccion(String patente, Zona zona) {
+		Infraccion nuevaInfraccion = new Infraccion(patente, zona);
 		this.infracciones.add(nuevaInfraccion);		
 	}
 	

@@ -1,18 +1,15 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
-// SI EL INSPECTOR ES UN STRING, LA APPINSPECTOR DEBE CONOCER LA ZONA
-// ZONA DEBE SABER LA CANTIDAD DE PUNTOS QUE LO COMPONEN
 public class APPInspector {
 	
-	private Inspector inspector;
 	private SEM sem;
 	private Celular celular;
-	//private Zona zona;
+	private Zona zona;
 	
-	public APPInspector(Inspector inspector, SEM sem, Celular celular) { 
-		this.inspector = inspector;
+	public APPInspector(SEM sem, Celular celular, Zona zona) { 
 		this.sem       = sem;
 		this.celular   = celular; 
+		this.zona      = zona;
 	}
 	
 	public void verificarPatente(String patente) {
@@ -22,19 +19,21 @@ public class APPInspector {
 	}
 
 	private void altaDeInfraccion(String patente) {
-		sem.cargarInfraccion(patente, this.inspector, this.zonaDeInspeccion());
+		if(this.esZonaDeInspeccion()) {
+			sem.cargarInfraccion(patente, this.zona);
+		}
+	}
+
+	private boolean esZonaDeInspeccion() {
+		return zona.lePertenece(this.getUbicacionActual());
+	}
+
+	private Punto getUbicacionActual() {
+		return celular.getGPS().getUbicacionActual();
 	}
 
 	public boolean esEstacionamientoVigente(String patente) {
 		return sem.esEstacionamientoVigente(patente);
 	}
 	
-	private Zona zonaDeInspeccion() {
-		return null; //calcularZonaDeInspeccion(); // Retorna de mi GPS la ubicación en el que hice la inspección
-		// LA ZONA DEBE SABER LA CANTIDAD DE PUNTOS Q LA COMPONEN Y TENER ALGO Q PERMITA VERIFICAR SI X PUNTO PERTENECE A ESA ZONA
-	}
-
-	private void calcularZonaDeInspeccion() {
-		//celular.getGPS().getUbicacionActual();
-	}
 }
