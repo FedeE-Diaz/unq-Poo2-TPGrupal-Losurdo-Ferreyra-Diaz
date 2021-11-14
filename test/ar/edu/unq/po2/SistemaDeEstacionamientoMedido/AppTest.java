@@ -2,6 +2,7 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -161,7 +162,7 @@ class AppTest {
 	void testCuandoUnaAppIniciaUnEstacionamientoYTranscurreMenosDeUnaHoraElCreditoNoCambia() {
 		puntoDeVenta.cargarCredito(1120132014, 120);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		this.temporizadorSem.simularTiempo(30);
+		this.temporizadorSem.simularTiempo(1);  // solo pasó un minuto
 		
 		
 		assertEquals("Su saldo disponible es: 80",clienteApp1.consultarSaldoDisponible());
