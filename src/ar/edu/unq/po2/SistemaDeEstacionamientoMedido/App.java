@@ -17,6 +17,16 @@ public class App implements MovementSensor{
 	private SEM sem;
 	private ArrayList<InterfacesGraficas> subscriptores;
 	
+	public App(SEM sem,String patente, Celular celular) {
+		super();
+		this.sem = sem;
+		this.patente = patente;
+		this.modo = new Manual(this); // TODO: ver en los test si esto funciona bien
+		this.celular = celular;
+		this.subscriptores = new ArrayList<InterfacesGraficas>();
+		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
+	}
+	
 	public Usuario getUsuario() { 
 		return sem.getUsuario(this.getNumeroTelefono());
 	}
@@ -52,72 +62,53 @@ public class App implements MovementSensor{
 	public ArrayList<InterfacesGraficas> getSubscriptores() {
 		return subscriptores;
 	}
-
-	public App(SEM sem,String patente, Celular celular) {
-		super();
-		
-		this.sem = sem;
-		this.patente = patente;
-		this.modo = new Manual(this); // TODO: ver en los test si esto funciona bien
-		this.celular = celular;
-		this.subscriptores = new ArrayList<InterfacesGraficas>();
-		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
-	}
 	
 	public void cambiarModo() {
 		this.getModo().cambiarModo();
 	}
 	
-
-
 	public String consultarSaldoDisponible() {
 		return "Su saldo disponible es: " + this.saldoDisponible();	
 	}
+	
 	public int saldoDisponible() {
 		return this.getUsuario().getCredito();
 	}
 	
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
-		
 		return this.getModo().iniciarEstacionamiento(patente);
 	}
+	
 	public void finalizarEstacionamiento(String patente) throws Exception{
-		
 		this.getModo().finalizarEstacionamiento(patente);
 	}
-	
 	
 	//En automatico: las alertas inician estacionamientos y finalizan automaticamente.
 	//En manual: solo avisa
 	
 	public void driving() throws Exception{
-		
 		this.notificarALasInterfacesGraficas(this.getModo().asistenciaFinEstacionamiento());
 	}
 	
 	public void walking() {
 		this.notificarALasInterfacesGraficas(this.getModo().asistenciaInicioEstacionamiento());
-		
 	}
 
 	private void notificarALasInterfacesGraficas(ArrayList<String> textoAMostrarEnPantalla) {
-
 		for(InterfacesGraficas ig : subscriptores) {
 			ig.popUpAviso(textoAMostrarEnPantalla); 
 		}
-		
 	}
 
 	public Zona getZonaActual() {
-
 		return sem.obtenerZonaDe(this.obtenerUbicacionActual());
 	}
+	
 	private Punto obtenerUbicacionActual() {
 		return celular.getGPS().getUbicacionActual();
 	}
 
 	public boolean hayEstacionamientoVigente() {
-
 		return sem.esEstacionamientoVigente(this.getPatente());
 	}
 
@@ -127,7 +118,6 @@ public class App implements MovementSensor{
 	}
 
 	public boolean estoyEnUnaZonaDeEstacionamientoMedido() {
-
 		return sem.obtenerZonaDe(this.obtenerUbicacionActual()) != null;
 	}
 	
@@ -138,9 +128,6 @@ public class App implements MovementSensor{
 	public Punto getPuntoActual() {
 		return this.celular.getPunto();
 	}
-
-
-
 }
 
 

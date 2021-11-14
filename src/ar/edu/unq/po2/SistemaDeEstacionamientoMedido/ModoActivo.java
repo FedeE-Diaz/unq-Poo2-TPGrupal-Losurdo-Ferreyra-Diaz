@@ -10,12 +10,11 @@ public abstract class ModoActivo implements Modo{
 		return app;
 	}
 
-
-	
 	public ModoActivo(App app) {
 		super();
 		this.app = app;
 	}
+	
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
 		this.setearPatenteManualmente(patente);
@@ -46,6 +45,7 @@ public abstract class ModoActivo implements Modo{
 						//(Ya que las condiciones determinaban que no debia mostrar ningun aviso)
 		}				//Esto se podria reemplazar con un arrayList<String> vacio y que entonces si está vacio no haga ningun popUp...es lo mismo
 	}
+	
 	@Override
 	public ArrayList<String> asistenciaFinEstacionamiento() throws Exception{
 		if(this.getApp().hayEstacionamientoVigente() && this.getApp().estoyEnElMismoPuntoQueElEstacionamiento()) { 
@@ -62,7 +62,5 @@ public abstract class ModoActivo implements Modo{
 
 	@Override
 	public abstract void cambiarModo();
-
-
 	
 }

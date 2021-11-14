@@ -2,7 +2,6 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -100,14 +99,24 @@ class AppTest {
 		
 	}
 	@Test
-	void testAvisosDeFinalSegunModo() throws Exception {
+	void testAvisosDeFinalDeEstacionamientoSegunModoManual() throws Exception {
+		puntoDeVenta.cargarCredito(1120132014, 50); // se carga credito antes de iniciar el estacionamiento	
 		clienteApp1.agregarSubscriptor(consola);
 		clienteApp1.iniciarEstacionamiento("M3M0RY-13");
+		
 		ArrayList<String> respuestaEsperada = new ArrayList<String>();
 		respuestaEsperada.add("Alerta: Hemos detectado que te estas a punto de ir sin haber finalizado el estacionamiento");
 		assertEquals(respuestaEsperada, clienteApp1.getModo().asistenciaFinEstacionamiento());
+	}
+	
+	@Test
+	void testAvisoDeFinalDeEstacionamientoSegunModoAutomatico() throws Exception {
+		puntoDeVenta.cargarCredito(1120132014, 50); // se carga credito antes de iniciar el estacionamiento	
+		clienteApp1.agregarSubscriptor(consola);
+		clienteApp1.iniciarEstacionamiento("M3M0RY-13");
 		
 		clienteApp1.cambiarModo();
+		
 		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
 		respuestaEsperada2.add("Se ha finalizado el estacionamiento actual automaticamente");
 		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaFinEstacionamiento());
@@ -136,8 +145,8 @@ class AppTest {
 		ArrayList<String> respuestaEsperada = new ArrayList<String>();
 		respuestaEsperada.add("Saldo insuficiente. Estacionamiento no permitido.");
 		assertEquals(respuestaEsperada, clienteApp1.iniciarEstacionamiento("IW4NTSL33P"));
-		assertEquals("IW4NTSL33P", clienteApp1.getPatente()); // Aun si no se puede hacer el estacionamiento,se cambiará la patente
-	}														 // ¿Pero nos interesa que vuelva a la patente de antes?
+		assertEquals("IW4NTSL33P", clienteApp1.getPatente()); 
+	}
 
 	@Test
 	void testFinalizarEstacionamiento() throws Exception {
@@ -155,7 +164,7 @@ class AppTest {
 		clienteApp2.getUsuario().sumarCredito(40);
 		clienteApp2.iniciarEstacionamiento(clienteApp2.getPatente());
 		clienteApp2.driving();
-		}
+	}
 	
 	@Test
 	void testWalkingIrseSinHaberHechoEstacionamiento() {
@@ -178,7 +187,6 @@ class AppTest {
 		clienteApp1.iniciarEstacionamiento("abc-123");
 		this.temporizadorSem.simularTiempo(1);  // solo pasó un minuto
 		
-		
 		assertEquals("Su saldo disponible es: 80",clienteApp1.consultarSaldoDisponible());
 	}
 	
@@ -195,7 +203,7 @@ class AppTest {
 	void testCuandoSeHacenLas20LosEstacionamientosFinalizan() {
 		puntoDeVenta.cargarCredito(1120132014, 600);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		this.temporizadorSem.simularTiempo(780);
+		this.temporizadorSem.simularTiempo(781);
 		
 		assertFalse(sem.esEstacionamientoVigente("abc-123"));
 	}
