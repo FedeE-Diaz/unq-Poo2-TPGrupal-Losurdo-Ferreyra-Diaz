@@ -75,7 +75,7 @@ class AppTest {
 		assertEquals(celu2.getNumero(), clienteApp2.getNumeroTelefono());
 	}
 	
-/*
+
 	@Test
 	void testAvisosDeInicioSegunModo() {
 		clienteApp1.agregarSubscriptor(consola);
@@ -91,7 +91,7 @@ class AppTest {
 		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaInicioEstacionamiento());
 		
 		
-	}*/
+	}
 	@Test
 	void testSubscribirInterfazGrafica() {
 		clienteApp1.agregarSubscriptor(consola);
@@ -99,19 +99,19 @@ class AppTest {
 		assertTrue(clienteApp1.getSubscriptores().contains(consola));
 		
 	}
-/*	@Test
-	void testAvisosDeFinalSegunModo() {
+	@Test
+	void testAvisosDeFinalSegunModo() throws Exception {
 		clienteApp1.agregarSubscriptor(consola);
+		clienteApp1.iniciarEstacionamiento("M3M0RY-13");
 		ArrayList<String> respuestaEsperada = new ArrayList<String>();
-		respuestaEsperada.add("Alerta: Estas a punto de irte de tu auto sin haber realizado un estacionamiento");
-		assertEquals(respuestaEsperada, clienteApp1.getModo().asistenciaInicioEstacionamiento());
+		respuestaEsperada.add("Alerta: Hemos detectado que te estas a punto de ir sin haber finalizado el estacionamiento");
+		assertEquals(respuestaEsperada, clienteApp1.getModo().asistenciaFinEstacionamiento());
 		
 		clienteApp1.cambiarModo();
 		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
-		respuestaEsperada2.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
-		respuestaEsperada2.add("Saldo insuficiente. Estacionamiento no permitido.");
-		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaInicioEstacionamiento());
-	}*/
+		respuestaEsperada2.add("Se ha finalizado el estacionamiento actual automaticamente");
+		assertEquals(respuestaEsperada2, clienteApp1.getModo().asistenciaFinEstacionamiento());
+	}
 
 	@Test
 	void testConsultarSaldoDisponible() {
