@@ -18,6 +18,7 @@ class AppTest {
 	private Consola consola;
 	private Zona zona1;
 	private PuntoDeVenta puntoDeVenta;
+	private Temporizador temporizadorSem;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -31,6 +32,7 @@ class AppTest {
 		puntoDeVenta = new PuntoDeVenta(this.sem, this.zona1);
 		zona1.agregarPunto(new Punto());
 		sem.agregarZona(zona1);
+		temporizadorSem = this.sem.getTemporizador();
 		
 	}
 	@Test
@@ -167,7 +169,8 @@ class AppTest {
 	void testCuandoUnaAppIniciaUnEstacionamientoYTranscurreMenosDeUnaHoraElCreditoNoCambia() {
 		puntoDeVenta.cargarCredito(1120132014, 80);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		//this.sem.reloj.// reloj simule que trascurra 30 mins
+		this.temporizadorSem.simularTiempo(20);
+		
 		
 		assertEquals("Su saldo disponible es: 40",clienteApp1.consultarSaldoDisponible());
 	}
@@ -179,6 +182,15 @@ class AppTest {
 		app = new App(this.sem,"abc-123", new Celular(1234));
 		
 		assertEquals("Su saldo disponible es: 200", app.consultarSaldoDisponible());
+	}
+	
+	@Test
+	void testCuandoSeHacenLas20LosEstacionamientosFinalizan() {
+		puntoDeVenta.cargarCredito(1120132014, 600);
+		clienteApp1.iniciarEstacionamiento("abc-123");
+		this.temporizadorSem.simularTiempo(240);
+		
+		assertFalse(sem.esEstacionamientoVigente("abc-123"));
 	}
 	/*
 	@Test

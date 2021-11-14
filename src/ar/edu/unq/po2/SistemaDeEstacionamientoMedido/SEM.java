@@ -2,7 +2,7 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.util.ArrayList;
 
-public class SEM implements Temporizador{
+public class SEM {
 		
 		private SEMGestionUsuario gestionUsuario;
 		private SEMGestionInfraccion gestionInfraccion;
@@ -11,6 +11,7 @@ public class SEM implements Temporizador{
 		private SEMGestionRegistro gestionRegistro;
 		private SEMGestionMonitoreo gestionMonitoreo;
 		private Reloj reloj;
+		private Temporizador temporizador;
 		
 		public SEM() {
 			super();
@@ -21,7 +22,8 @@ public class SEM implements Temporizador{
 			this.gestionRegistro = new SEMGestionRegistro();
 			this.gestionMonitoreo = new SEMGestionMonitoreo();
 			this.reloj = new Reloj();
-			reloj.agregarObservador(this);
+			this.temporizador = new Temporizador();
+			reloj.subscribirse(this.temporizador);
 		}
 		public SEMGestionUsuario getMyGestionUsuario() {
 			return gestionUsuario;
@@ -49,6 +51,9 @@ public class SEM implements Temporizador{
 		
 		public Reloj getReloj() {
 			return reloj;
+		}
+		public Temporizador getTemporizador() {
+			return this.temporizador;
 		}
 		public int getPrecioEstacionamientoPorHora() {
 			return this.getMyEstacionamiento().getPrecioEstacionamientoPorHora();
