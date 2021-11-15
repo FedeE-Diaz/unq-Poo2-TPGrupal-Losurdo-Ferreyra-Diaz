@@ -7,6 +7,10 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.Estacionamiento.PuntoDeVenta;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.InspeccionesEstacionamientos.Zona;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.SEM.SEM;
+
 class GestionRegistroTest {
 
 	private SEM sem;

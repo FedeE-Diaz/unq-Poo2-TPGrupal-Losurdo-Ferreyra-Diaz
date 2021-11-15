@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.App.App;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.App.Manual;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.ClasesDeRepresentacion.Celular;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.ClasesDeRepresentacion.Punto;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.Estacionamiento.PuntoDeVenta;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.InspeccionesEstacionamientos.Zona;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.Reloj.Temporizador;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.SEM.SEM;
+
 
 class AppTest {
 	

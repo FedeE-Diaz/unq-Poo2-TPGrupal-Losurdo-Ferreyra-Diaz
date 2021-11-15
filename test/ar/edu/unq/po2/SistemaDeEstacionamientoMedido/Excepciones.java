@@ -1,10 +1,11 @@
 package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.SEM.SEM;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.SEM.SEMGestionEstacionamiento;
 
 class Excepciones {
 	
