@@ -74,7 +74,7 @@ class PuntoDeVentaTest {
 	void cuandoUnaEntidadSeDesusribeDeUnSemDejaDeRecibirNuevosAvisos(){
 		this.entidad.suscribirseEn(sem);
 		this.puntoDeVenta.iniciarEstacionamiento("abc-203", 3);
-		this.entidad.desuscribirseEn(sem);
+		this.entidad.deSuscribirseEn(sem);
 		this.puntoDeVenta.iniciarEstacionamiento("bca-302", 1);
 		
 		assertEquals(1, entidad.getAvisosRecibidos().size());
