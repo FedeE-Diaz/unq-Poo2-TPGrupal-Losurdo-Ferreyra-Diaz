@@ -3,8 +3,6 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 import java.util.ArrayList;
 
 public class Manual extends ModoActivo{
-	
-
 
 	public Manual(App app) {
 		super(app);
@@ -18,7 +16,6 @@ public class Manual extends ModoActivo{
 		return respuesta;
 	}
 
-
 	@Override
 	protected ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento() {
 		ArrayList<String> respuesta = new ArrayList<String>();
@@ -26,20 +23,14 @@ public class Manual extends ModoActivo{
 		return respuesta;
 	}
 
-
 	@Override
 	public void cambiarModo() {
-
-		this.getApp().setModo(new Automatico(this.getApp()));
-		
+		this.getApp().setModo(new Automatico(this.getApp()));	
 	}
+	
 	@Override
 	protected void setearPatenteManualmente(String patente) {
 		this.getApp().setPatente(patente);
 	}
-
-
-
-
 
 }
