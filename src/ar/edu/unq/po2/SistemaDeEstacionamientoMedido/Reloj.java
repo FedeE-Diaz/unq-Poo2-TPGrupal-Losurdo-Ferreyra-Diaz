@@ -12,7 +12,6 @@ public class Reloj implements TemporizadorListener {
 	
 	public Reloj() {
 		super();
-		new ArrayList<Temporizador>();
 		this.listeners = new ArrayList<RelojListener>();
 		this.tiempoActual = LocalDateTime.now();
 	}

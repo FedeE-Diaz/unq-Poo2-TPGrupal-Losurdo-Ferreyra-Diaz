@@ -6,13 +6,13 @@ public class SEMGestionUsuario {
 
 	private ArrayList<Usuario> listaDeUsuarios;
 
-	public ArrayList<Usuario> getListaDeUsuarios() {
-		return listaDeUsuarios;
-	}
-
 	public SEMGestionUsuario() {
 		super();
 		this.listaDeUsuarios = new ArrayList<Usuario>();
+	}
+	
+	public ArrayList<Usuario> getListaDeUsuarios() {
+		return listaDeUsuarios;
 	}
 
 	public void cargarCredito(int numTelefono, int credito) {
