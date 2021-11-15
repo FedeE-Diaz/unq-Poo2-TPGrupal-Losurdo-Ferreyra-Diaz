@@ -3,9 +3,7 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 import java.util.ArrayList;
 
 public class Automatico extends ModoActivo{
-
-
-
+	
 	public Automatico(App app) {
 		super(app);
 	}
@@ -30,9 +28,7 @@ public class Automatico extends ModoActivo{
 	
 	@Override
 	public void cambiarModo() {
-	
 	this.getApp().setModo(new Manual(this.getApp()));
-	
 	}
 
 
