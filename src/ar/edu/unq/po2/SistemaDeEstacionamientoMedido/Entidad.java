@@ -2,7 +2,7 @@ package ar.edu.unq.po2.SistemaDeEstacionamientoMedido;
 
 import java.util.ArrayList;
 
-public class Entidad {
+public class Entidad implements MonitoreoListener{
 	private ArrayList<AvisoGenerico> avisosRecibidos;
 	
 	public Entidad() {
@@ -20,7 +20,7 @@ public class Entidad {
 		return this.avisosRecibidos;
 	}
 	
-	public void desuscribirseEn(SEM sem) {
+	public void deSuscribirseEn(SEM sem) {
 		sem.desuscribir(this);
 	}
 }
