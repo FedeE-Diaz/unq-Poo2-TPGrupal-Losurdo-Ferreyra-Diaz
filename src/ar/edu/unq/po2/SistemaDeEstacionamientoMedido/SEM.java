@@ -88,7 +88,7 @@ public class SEM implements RelojListener {
 			this.getMyInfraccion().cargarInfraccion(patente, zona);
 		}
 		public Zona obtenerZonaDe(Punto punto) {
-			return this.getMyZona().obtenerZonaDe(punto); // Si el punto no existe en ninguna zona, entonces devuelve null
+			return this.getMyZona().obtenerZonaDe(punto);
 		}
 		public Usuario getUsuario(int numero) {
 			return this.getMyGestionUsuario().getUsuarioDe(numero);

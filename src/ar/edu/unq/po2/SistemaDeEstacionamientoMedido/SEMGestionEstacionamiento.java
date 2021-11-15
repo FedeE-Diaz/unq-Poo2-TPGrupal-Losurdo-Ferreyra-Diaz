@@ -65,18 +65,11 @@ public class SEMGestionEstacionamiento{
 		return this.getGestionApp().iniciarNuevoEstacionamiento(app);
 	}
 
-	public void actualizarEstadoEstacionamiento() {
-		// TODO completar la parte de abajo comentada
-		
+	public void actualizarEstadoEstacionamiento() {		
 		this.verificarFinalizacionDeTodosLosEstacionamientos();
 		for(EstacionamientoVigente estacionamiento : estacionamientosActuales) {
 			estacionamiento.actualizar(sem.getHoraSistema(), this);
 		}
-		/* Esto lo que hará es darle la orden a todos los estacionamientos(pero solo tendra efecto en el de la app)
-		 *  de revisar en cada uno de los estacionamientos vigentes, que si ya se completo una nueva hora desde que se inicio,
-		 *   se vuelva a cobrar otros 40 por el estacionamiento.
-		 */
-		// por cada estacionamiento -> estacionamiento.actualizarEstado() o algo asi (verá si es momento de cobrar dinero o no)
 	}
 	
 	public void cobrarA(int numTelefono) {
@@ -101,10 +94,7 @@ public class SEMGestionEstacionamiento{
 		this.estacionamientosActuales.clear();
 	}
 	
-	public void notificarUsuario(int numTelefono) {
-		// TODO Auto-generated method stub
-		
+	public void notificarUsuario(int numeroDeTelefono) {
 	}
-
 
 }

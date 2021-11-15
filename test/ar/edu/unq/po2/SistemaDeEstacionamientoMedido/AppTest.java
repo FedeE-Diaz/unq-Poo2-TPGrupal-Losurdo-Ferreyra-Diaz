@@ -84,6 +84,8 @@ class AppTest {
 		assertEquals(respuestaEsperada, clienteApp1.getModo().asistenciaInicioEstacionamiento());
 		
 		clienteApp1.cambiarModo();
+		clienteApp1.cambiarModo();
+		clienteApp1.cambiarModo(); // un usuario cambia de modo 3 veces para verificar que anda el cambio
 		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
 		respuestaEsperada2.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
 		respuestaEsperada2.add("Saldo insuficiente. Estacionamiento no permitido.");
@@ -98,6 +100,7 @@ class AppTest {
 		assertTrue(clienteApp1.getSubscriptores().contains(consola));
 		
 	}
+	
 	@Test
 	void testAvisosDeFinalDeEstacionamientoSegunModoManual() throws Exception {
 		puntoDeVenta.cargarCredito(1120132014, 50); // se carga credito antes de iniciar el estacionamiento	
