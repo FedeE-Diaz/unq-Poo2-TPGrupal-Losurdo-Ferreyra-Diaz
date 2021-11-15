@@ -5,6 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.ClasesDeRepresentacion.Celular;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.ClasesDeRepresentacion.Punto;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.Estacionamiento.EstacionamientoVigente;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.InspeccionesEstacionamientos.APPInspector;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.InspeccionesEstacionamientos.Zona;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.SEM.SEM;
+
 
 class APPInspectorTest {
 	
