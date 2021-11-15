@@ -8,7 +8,6 @@ public class Manual extends ModoActivo{
 		super(app);
 	}
 
-	// SOLO AVISA
 	@Override
 	protected ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento() {
 		ArrayList<String> respuesta = new ArrayList<String>();

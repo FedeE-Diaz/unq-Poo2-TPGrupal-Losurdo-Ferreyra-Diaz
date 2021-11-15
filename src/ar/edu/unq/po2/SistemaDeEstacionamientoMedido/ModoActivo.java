@@ -6,13 +6,13 @@ public abstract class ModoActivo implements Modo{
 
 	private final App app;
 
-	protected App getApp() {
-		return app;
-	}
-
 	public ModoActivo(App app) {
 		super();
 		this.app = app;
+	}
+	
+	protected App getApp() {
+		return app;
 	}
 	
 	@Override

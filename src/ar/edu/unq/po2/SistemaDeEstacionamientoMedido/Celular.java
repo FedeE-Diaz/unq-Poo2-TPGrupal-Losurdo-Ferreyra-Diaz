@@ -13,7 +13,7 @@ public class Celular {
 		return numero;
 	}
 	public GPS getGPS() {
-		return gps; // creo q con esto directamente, ya estaria en vez del getPosicion()
+		return gps; 
 	}
 	public Punto getPunto() {
 		return this.gps.getUbicacionActual();

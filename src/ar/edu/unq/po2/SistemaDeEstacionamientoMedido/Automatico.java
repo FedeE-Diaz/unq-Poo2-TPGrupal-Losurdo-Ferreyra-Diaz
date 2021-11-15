@@ -30,6 +30,4 @@ public class Automatico extends ModoActivo{
 	public void cambiarModo() {
 	this.getApp().setModo(new Manual(this.getApp()));
 	}
-
-
 }
