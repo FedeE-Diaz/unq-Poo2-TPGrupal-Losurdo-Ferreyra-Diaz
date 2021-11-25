@@ -27,10 +27,11 @@ public class App implements MovementSensor{
 		super();
 		this.sem = sem;
 		this.patente = patente;
-		this.modo = new Manual(this); // TODO: ver en los test si esto funciona bien
+		this.modo = new Manual(this); 
 		this.celular = celular;
 		this.subscriptores = new ArrayList<InterfacesGraficas>();
 		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
+		this.sem.getTemporizador().simularHora(7, 0);
 	}
 	
 	public Usuario getUsuario() { 
