@@ -12,6 +12,5 @@ public interface Modo {
 	
 	public ArrayList<String> asistenciaFinEstacionamiento() throws Exception;
 	
-	public void cambiarModo();
 	
 }

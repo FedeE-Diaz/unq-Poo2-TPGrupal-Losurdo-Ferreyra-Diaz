@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.App.App;
+import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.App.Automatico;
 import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.App.Manual;
 import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.ClasesDeRepresentacion.Celular;
 import ar.edu.unq.po2.SistemaDeEstacionamientoMedido.ClasesDeRepresentacion.Punto;
@@ -92,9 +93,9 @@ class AppTest {
 		
 		assertEquals(respuestaEsperada, clienteApp1.getModo().asistenciaInicioEstacionamiento());
 		
-		clienteApp1.cambiarModo();
-		clienteApp1.cambiarModo();
-		clienteApp1.cambiarModo(); // un usuario cambia de modo 3 veces para verificar que anda el cambio
+		clienteApp1.cambiarModo(new Automatico(clienteApp1));
+		clienteApp1.cambiarModo(new Manual(clienteApp1));
+		clienteApp1.cambiarModo(new Automatico(clienteApp1));// un usuario cambia de modo 2 veces para verificar que anda el cambio
 		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
 		respuestaEsperada2.add("Se ha iniciado una solicitud de estacionamiento automaticamente");
 		respuestaEsperada2.add("Saldo insuficiente. Estacionamiento no permitido.");
@@ -127,7 +128,7 @@ class AppTest {
 		clienteApp1.agregarSubscriptor(consola);
 		clienteApp1.iniciarEstacionamiento("M3M0RY-13");
 		
-		clienteApp1.cambiarModo();
+		clienteApp1.cambiarModo(new Automatico(clienteApp1));
 		
 		ArrayList<String> respuestaEsperada2 = new ArrayList<String>();
 		respuestaEsperada2.add("Se ha finalizado el estacionamiento actual automaticamente");
@@ -146,7 +147,7 @@ class AppTest {
 
 	@Test
 	void testIniciarEstacionamientoAuto() {
-		clienteApp1.cambiarModo();
+		clienteApp1.cambiarModo(new Automatico(clienteApp1));
 		ArrayList<String> respuestaEsperada = new ArrayList<String>();
 		respuestaEsperada.add("Saldo insuficiente. Estacionamiento no permitido.");
 		assertEquals(respuestaEsperada, clienteApp1.iniciarEstacionamiento(clienteApp1.getPatente()));
@@ -171,7 +172,7 @@ class AppTest {
 	
 	@Test
 	void testDriving() throws Exception{
-		clienteApp2.cambiarModo();
+		clienteApp1.cambiarModo(new Automatico(clienteApp1));
 		clienteApp2.agregarSubscriptor(consola);
 		clienteApp2.getUsuario().sumarCredito(40);
 		clienteApp2.iniciarEstacionamiento(clienteApp2.getPatente());

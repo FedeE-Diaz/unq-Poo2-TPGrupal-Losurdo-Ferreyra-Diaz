@@ -18,18 +18,21 @@ public class App implements MovementSensor{
 	 *  que no nos pidieron (que si se lo resolvemos gratis luego no nos contratan de nuevo 
 	 *  para resolver ese problema jeje) - Braian */
 	
-	private Modo modo; //Me parecio una buena idea aplicar un State para el modo automatico/manual.
+	private Modo modo;
+	private EstadoDesplazamiento estado;
 	private Celular celular;
 	private SEM sem;
-	private ArrayList<InterfacesGraficas> subscriptores;
+	private Notificadora notificadora;
+
 	
 	public App(SEM sem,String patente, Celular celular) {
 		super();
 		this.sem = sem;
 		this.patente = patente;
-		this.modo = new Manual(this); // TODO: ver en los test si esto funciona bien
+		this.modo = new Manual(this);
+		this.estado = new Walking();
 		this.celular = celular;
-		this.subscriptores = new ArrayList<InterfacesGraficas>();
+		this.notificadora = new Notificadora(this);
 		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
 	}
 	
@@ -56,6 +59,14 @@ public class App implements MovementSensor{
 	public Modo getModo() {
 		return modo;
 	}
+	
+	public EstadoDesplazamiento getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoDesplazamiento estado) {
+		this.estado = estado;
+	}
 
 	public Celular getCelular() {
 		return celular;
@@ -65,12 +76,12 @@ public class App implements MovementSensor{
 		return getCelular().getNumero();
 	}
 	
-	public ArrayList<InterfacesGraficas> getSubscriptores() {
-		return subscriptores;
+	public Notificadora getNotificadora() {
+		return notificadora;
 	}
-	
-	public void cambiarModo() {
-		this.getModo().cambiarModo();
+
+	public void cambiarModo(Modo modo) {
+		this.setModo(modo);
 	}
 	
 	public String consultarSaldoDisponible() {
@@ -89,23 +100,24 @@ public class App implements MovementSensor{
 		this.getModo().finalizarEstacionamiento(patente);
 	}
 	
-	//En automatico: las alertas inician estacionamientos y finalizan automaticamente.
-	//En manual: solo avisa
+	// En automatico: las alertas inician estacionamientos y finalizan automaticamente.
+	// En manual: solo avisa
 	
-	public void driving() throws Exception{
-		this.notificarALasInterfacesGraficas(this.getModo().asistenciaFinEstacionamiento());
+	
+	public void driving(){
+		
+		
+		this.getEstado().driving(this);
 	}
 	
 	public void walking() {
-		this.notificarALasInterfacesGraficas(this.getModo().asistenciaInicioEstacionamiento());
+		
+		this.getEstado().walking(this);
 	}
 
-	private void notificarALasInterfacesGraficas(ArrayList<String> textoAMostrarEnPantalla) {
-		for(InterfacesGraficas ig : subscriptores) {
-			ig.popUpAviso(textoAMostrarEnPantalla); 
-		}
+	public void notificarALasInterfacesGraficas(ArrayList<String> aviso) {
+		notificadora.notificarALasInterfacesGraficas(aviso);
 	}
-
 	public Zona getZonaActual() {
 		return sem.obtenerZonaDe(this.obtenerUbicacionActual());
 	}
@@ -128,11 +140,16 @@ public class App implements MovementSensor{
 	}
 	
 	public void agregarSubscriptor(InterfacesGraficas sub) {
-		this.getSubscriptores().add(sub);
+		notificadora.agregarSubscriptor(sub);
 	}
 
 	public Punto getPuntoActual() {
 		return this.celular.getPunto();
+	}
+
+	public ArrayList<InterfacesGraficas> getSubscriptores() {
+		// TODO Auto-generated method stub
+		return notificadora.getSubscriptores();
 	}
 }
 
