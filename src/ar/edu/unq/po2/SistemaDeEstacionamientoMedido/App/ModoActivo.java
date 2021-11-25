@@ -15,6 +15,7 @@ public abstract class ModoActivo implements Modo{
 		return app;
 	}
 	
+	
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
 		this.setearPatenteManualmente(patente);

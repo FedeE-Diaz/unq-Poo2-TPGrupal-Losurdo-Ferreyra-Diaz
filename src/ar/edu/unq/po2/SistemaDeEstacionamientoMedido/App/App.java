@@ -23,7 +23,6 @@ public class App implements MovementSensor{
 	private Celular celular;
 	private SEM sem;
 	private Notificadora notificadora;
-
 	
 	public App(SEM sem,String patente, Celular celular) {
 		super();
