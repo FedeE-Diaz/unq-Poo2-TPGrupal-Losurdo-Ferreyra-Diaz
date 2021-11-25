@@ -35,6 +35,7 @@ public class App implements MovementSensor{
 		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
 	}
 	
+	
 	public Usuario getUsuario() { 
 		return sem.getUsuario(this.getNumeroTelefono());
 	}
