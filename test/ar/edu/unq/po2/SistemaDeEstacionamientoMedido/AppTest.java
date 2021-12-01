@@ -41,10 +41,9 @@ class AppTest {
 		puntoDeVenta = new PuntoDeVenta(this.sem, this.zona1);
 		zona1.agregarPunto(new Punto());
 		sem.agregarZona(zona1);
-		temporizadorSem = this.sem.getTemporizador();
-		temporizadorSem.simularHora(7, 0);
-		
+		temporizadorSem = this.sem.getTemporizador();		
 	}
+	
 	@Test
 	void testGetUsuario() {
 		assertTrue(sem.getMyGestionUsuario().getListaDeUsuarios().contains(clienteApp1.getUsuario()));
@@ -197,7 +196,7 @@ class AppTest {
 	void testCuandoUnaAppIniciaUnEstacionamientoYTranscurreMenosDeUnaHoraElCreditoNoCambia() {
 		puntoDeVenta.cargarCredito(1120132014, 120);
 		clienteApp1.iniciarEstacionamiento("abc-123");
-		this.temporizadorSem.simularTiempo(1);  // solo pasó un minuto
+		this.temporizadorSem.simularTiempo(30);  // solo pasó un minuto
 		
 		assertEquals("Su saldo disponible es: 80",clienteApp1.consultarSaldoDisponible());
 	}
