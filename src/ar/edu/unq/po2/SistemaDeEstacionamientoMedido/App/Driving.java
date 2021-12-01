@@ -4,11 +4,11 @@ public class Driving implements EstadoDesplazamiento{
 	
 	@Override
 	public void walking(App app) {
-		app.setEstado(new Driving());
+		this.cambiarEstado(new Walking());
 		try {
 			app.notificarALasInterfacesGraficas(app.getModo().asistenciaFinEstacionamiento());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block -> que lo vea fede (No se puede editar el contrato de movement sensor agregando un throw exception)
+			// TODO Verificar el cambio de throw exception a try/catch (El contrato de movement sensor no contiene throw exception, se viola el contrato al estar agregando un throw exception)
 			e.printStackTrace();
 		}
 	}
