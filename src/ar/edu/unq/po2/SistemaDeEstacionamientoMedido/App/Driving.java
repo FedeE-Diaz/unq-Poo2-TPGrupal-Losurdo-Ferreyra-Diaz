@@ -4,7 +4,7 @@ public class Driving implements EstadoDesplazamiento{
 	
 	@Override
 	public void walking(App app) {
-		this.cambiarEstado(new Walking());
+		this.cambiarEstado(new Walking(), app);
 		try {
 			app.notificarALasInterfacesGraficas(app.getModo().asistenciaFinEstacionamiento());
 		} catch (Exception e) {
