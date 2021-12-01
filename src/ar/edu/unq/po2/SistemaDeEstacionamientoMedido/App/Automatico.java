@@ -26,8 +26,4 @@ public class Automatico extends ModoActivo{
 		return respuesta;
 	}
 	
-	@Override
-	public void cambiarModo() {
-	this.getApp().setModo(new Manual(this.getApp()));
-	}
 }

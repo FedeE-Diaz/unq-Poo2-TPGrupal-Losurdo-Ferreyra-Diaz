@@ -15,6 +15,7 @@ public abstract class ModoActivo implements Modo{
 		return app;
 	}
 	
+	
 	@Override
 	public ArrayList<String> iniciarEstacionamiento(String patente) {
 		this.setearPatenteManualmente(patente);
@@ -28,7 +29,7 @@ public abstract class ModoActivo implements Modo{
 		
 		this.getApp().getSem().finEstacionamiento(patente);
 	}
-
+	
 	/* Estas advertencias que se dan por un posible inicio/fin de estacionamiento, se activan 
 	 * al detectar un cambio en el tipo de desplazamiento del usuario (mediante la interfaz MovementSensor)
 	 * quien sea que se encargue de enviar estos mensajes provoca que se envie el aviso a la interfaz grafica
@@ -59,8 +60,5 @@ public abstract class ModoActivo implements Modo{
 	protected abstract ArrayList<String> notificarAdvertenciaSobreInicioEstacionamiento();
 	
 	protected abstract ArrayList<String> notificarAdvertenciaSobreFinEstacionamiento() throws Exception;
-
-	@Override
-	public abstract void cambiarModo();
 	
 }

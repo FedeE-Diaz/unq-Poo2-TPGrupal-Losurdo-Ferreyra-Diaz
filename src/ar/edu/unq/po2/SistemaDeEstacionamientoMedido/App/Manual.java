@@ -22,10 +22,6 @@ public class Manual extends ModoActivo{
 		return respuesta;
 	}
 
-	@Override
-	public void cambiarModo() {
-		this.getApp().setModo(new Automatico(this.getApp()));	
-	}
 	
 	@Override
 	protected void setearPatenteManualmente(String patente) {
