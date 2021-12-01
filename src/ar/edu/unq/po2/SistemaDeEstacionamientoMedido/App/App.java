@@ -12,9 +12,9 @@ public class App implements MovementSensor{
 
 	private String patente; 
 	
-	/* Por lo que entiendo, solo habr· un estacionamiento app a la vez, en caso de que hubiera mas de uno,
+	/* Por lo que entiendo, solo habr√° un estacionamiento app a la vez, en caso de que hubiera mas de uno,
 	 *  habria que modificar ciertos metodos para contemplar esos casos, pero bueno, no se pidio evaluar esa situacion,
-	 *  por lo cual como dijeron en las clases, hay que evitar programar cosas de m·s y resolver problemas sobre situaciones 
+	 *  por lo cual como dijeron en las clases, hay que evitar programar cosas de m√°s y resolver problemas sobre situaciones 
 	 *  que no nos pidieron (que si se lo resolvemos gratis luego no nos contratan de nuevo 
 	 *  para resolver ese problema jeje) - Braian */
 	
@@ -28,11 +28,15 @@ public class App implements MovementSensor{
 		super();
 		this.sem = sem;
 		this.patente = patente;
+
 		this.modo = new Manual(this);
 		this.estado = new Walking();
+
+
 		this.celular = celular;
 		this.notificadora = new Notificadora(this);
 		sem.crearUsuarioDesdeApp(this,this.getNumeroTelefono());
+		this.sem.getTemporizador().simularHora(7, 0);
 	}
 	
 	
